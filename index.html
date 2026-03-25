@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="title">कृषि जलवायु जोखिम भविष्यवाणी | Agricultural Climate Risk Prediction</title>
+    <meta name="description" data-i18n="description" content="किसानों के लिए फसल जोखिम भविष्यवाणी और मौसम सलाह | Crop risk prediction and weather advice for farmers">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="AgriRisk">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192x192.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold animate__animated animate__fadeInLeft" href="#">
+                <i class="bi bi-cloud-sun-fill me-2"></i>
+                <span data-i18n="nav.brand">कृषि जोखिम भविष्यवाणी | Agricultural Risk Prediction</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-i18n="nav.home">होम | Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html" data-i18n="nav.dashboard">डैशबोर्ड | Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html" data-i18n="nav.about">के बारे में | About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="help.html" data-i18n="nav.help">सहायता | Help</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-translate me-1"></i>
+                            <span data-i18n="nav.language">भाषा | Language</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="hi">हिन्दी</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="mr">मराठी</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-4" id="report-root">
+        <!-- Enhanced Hero Section with Slideshow -->
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="hero-section">
+                    <div class="hero-slideshow">
+                        <div class="slide" style="background-image: url('assets/images/farm landscape.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/green field.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/harvest.jpg');"></div>
+                    </div>
+                    <div class="hero-content">
+                        <div class="hero-badge mb-3 animate__animated animate__bounceIn">
+                            <span class="badge bg-gradient-warning text-dark px-3 py-2">
+                                <i class="bi bi-lightning-fill me-2"></i>
+                                <span>स्मार्ट कृषि | Smart Agriculture</span>
+                            </span>
+                        </div>
+                        <h1 class="display-3 fw-bold mb-3 animate__animated animate__fadeInDown">
+                            <i class="bi bi-cloud-sun-fill me-3 text-warning"></i>
+                            <span data-i18n="title">कृषि जलवायु जोखिम भविष्यवाणी | Agricultural Climate Risk Prediction</span>
+                        </h1>
+                        <p class="lead mb-4 animate__animated animate__fadeInUp" data-i18n="description">
+                            किसानों के लिए फसल जोखिम भविष्यवाणी और मौसम सलाह | Crop risk prediction and weather advice for farmers
+                        </p>
+                        
+                        <!-- Enhanced Action Buttons -->
+                        <div class="hero-actions mb-4 animate__animated animate__fadeInUp">
+                            <a href="dashboard.html" class="btn btn-gradient-primary btn-lg me-3 mb-2">
+                                <i class="bi bi-graph-up-arrow me-2"></i>
+                                <span>डैशबोर्ड देखें | View Dashboard</span>
+                            </a>
+                            <button class="btn btn-outline-light btn-lg mb-2" onclick="scrollToFeatures()">
+                                <i class="bi bi-info-circle me-2"></i>
+                                <span>और जानें | Learn More</span>
+                            </button>
+                        </div>
+
+                        <div class="hero-stats row g-4 justify-content-center mt-4">
+                            <div class="col-auto">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-geo-alt-fill"></i>
+                                    </div>
+                                    <div class="stat-number">20+</div>
+                                    <div class="stat-label">Districts</div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-seedling"></i>
+                                    </div>
+                                    <div class="stat-number">100+</div>
+                                    <div class="stat-label">Crops</div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-translate"></i>
+                                    </div>
+                                    <div class="stat-number">3</div>
+                                    <div class="stat-label">Languages</div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="stat-item">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-people-fill"></i>
+                                    </div>
+                                    <div class="stat-number">5000+</div>
+                                    <div class="stat-label">Farmers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-shapes">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                        <div class="shape shape-4"></div>
+                        <div class="shape shape-5"></div>
+                        <div class="shape shape-6"></div>
+                    </div>
+                    <div class="hero-particles"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row g-4 mb-5" id="features-section">
+            <div class="col-12">
+                <div class="text-center mb-5 features-header">
+                    <h2 class="display-5 fw-bold mb-3">
+                        <i class="bi bi-star-fill text-warning me-2"></i>
+                        <span>मुख्य विशेषताएं | Key Features</span>
+                    </h2>
+                    <p class="lead text-muted">कृषि में AI और डेटा विज्ञान का उपयोग | Using AI and Data Science in Agriculture</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon bg-gradient-primary">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+                    <h4>वास्तविक समय विश्लेषण | Real-time Analytics</h4>
+                    <p>लाइव डेटा के साथ तुरंत फसल जोखिम मूल्यांकन और मौसम पूर्वानुमान प्राप्त करें।</p>
+                    <div class="feature-stats">
+                        <span class="stat">94% सटीकता | 94% Accuracy</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon bg-gradient-success">
+                        <i class="bi bi-robot"></i>
+                    </div>
+                    <h4>AI-संचालित सुझाव | AI-Powered Recommendations</h4>
+                    <p>मशीन लर्निंग एल्गोरिदम के साथ स्मार्ट फसल सुझाव और सिंचाई अनुकूलन।</p>
+                    <div class="feature-stats">
+                        <span class="stat">20% उत्पादन वृद्धि | 20% Yield Increase</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="feature-card h-100">
+                    <div class="feature-icon bg-gradient-warning">
+                        <i class="bi bi-phone"></i>
+                    </div>
+                    <h4>मोबाइल अनुकूल | Mobile Optimized</h4>
+                    <p>किसी भी डिवाइस पर काम करता है - स्मार्टफोन, टैबलेट या कंप्यूटर।</p>
+                    <div class="feature-stats">
+                        <span class="stat">100% प्रतिक्रियाशील | 100% Responsive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works Section -->
+        <div class="row g-4 mb-5">
+            <div class="col-12">
+                <div class="text-center mb-5">
+                    <h2 class="display-5 fw-bold mb-3">
+                        <i class="bi bi-gear-fill text-primary me-2"></i>
+                        <span>यह कैसे काम करता है | How It Works</span>
+                    </h2>
+                    <p class="lead text-muted">तीन सरल चरणों में अपनी कृषि को स्मार्ट बनाएं | Make your agriculture smart in three simple steps</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="step-card text-center">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </div>
+                    <h4>जिल्हा चुनें | Select District</h4>
+                    <p>अपना जिल्हा चुनें और फसल प्रकार का चयन करें।</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="step-card text-center">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="bi bi-cloud-sun"></i>
+                    </div>
+                    <h4>डेटा विश्लेषण | Data Analysis</h4>
+                    <p>AI मौसम डेटा और फसल जोखिम का विश्लेषण करता है।</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="step-card text-center">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="bi bi-lightbulb"></i>
+                    </div>
+                    <h4>सुझाव प्राप्त करें | Get Recommendations</h4>
+                    <p>व्यक्तिगत फसल सुझाव और जोखिम चेतावनी प्राप्त करें।</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-lg border-0 mb-4 form-card">
+            <div class="card-header bg-gradient-primary text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-gear-fill me-2"></i>
+                    <span>सेटिंग्स | Settings</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3 align-items-end">
+                    <div class="col-12 col-md-4">
+                        <label for="districtSelect" class="form-label fw-semibold" data-i18n="form.district">जिल्हा निवडा | Select District</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-gradient-info text-white">
+                                <i class="bi bi-geo-alt-fill"></i>
+                            </span>
+                            <select id="districtSelect" class="form-select animate__animated animate__fadeIn" aria-label="Select district">
+                                <option value="" selected disabled data-i18n="form.choose_district">जिल्हा निवडा… | Choose a district…</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="languageSelect" class="form-label fw-semibold" data-i18n="form.voice_language">आवाज भाषा | Voice Language</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-gradient-success text-white">
+                                <i class="bi bi-translate"></i>
+                            </span>
+                            <select id="languageSelect" class="form-select animate__animated animate__fadeIn" aria-label="Select language for voice">
+                                <option value="mr-IN">मराठी (Marathi)</option>
+                                <option value="hi-IN">हिन्दी (Hindi)</option>
+                                <option value="en-IN">English</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <label for="cropTypeSelect" class="form-label fw-semibold" data-i18n="form.crop_type">फसल प्रकार | Crop Type</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-gradient-warning text-dark">
+                                <i class="bi bi-seedling"></i>
+                            </span>
+                            <select id="cropTypeSelect" class="form-select animate__animated animate__fadeIn" aria-label="Select crop type">
+                                <option value="all" data-i18n="form.all_crops">सभी फसलें | All Crops</option>
+                                <option value="cereals" data-i18n="form.cereals">अनाज | Cereals</option>
+                                <option value="pulses" data-i18n="form.pulses">दलहन | Pulses</option>
+                                <option value="vegetables" data-i18n="form.vegetables">सब्जियां | Vegetables</option>
+                                <option value="fruits" data-i18n="form.fruits">फल | Fruits</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2 d-grid">
+                        <button id="refreshBtn" class="btn btn-gradient-primary animate__animated animate__pulse">
+                            <i class="bi bi-arrow-repeat me-1"></i> 
+                            <span data-i18n="form.refresh">ताज़ा करें | Refresh</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-lg border-0 h-100 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-success text-white d-flex justify-content-between align-items-center">
+                        <span class="fw-bold" data-i18n="cards.crop_risk">फसल जोखिम तालिका | Crop Risk Table</span>
+                        <div class="d-flex gap-2">
+                            <button id="exportPdfBtn" class="btn btn-sm btn-light">
+                                <i class="bi bi-filetype-pdf me-1"></i> 
+                                <span data-i18n="buttons.export_pdf">PDF निर्यात | Export PDF</span>
+                            </button>
+                            <button id="speakSummaryBtn" class="btn btn-sm btn-warning">
+                                <i class="bi bi-megaphone me-1"></i> 
+                                <span data-i18n="buttons.speak_summary">सारांश सुनाएं | Speak Summary</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table align-middle table-hover" id="riskTable">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th data-i18n="table.crop">फसल | Crop</th>
+                                        <th data-i18n="table.risk">जोखिम | Risk</th>
+                                        <th data-i18n="table.suggestion">सुझाव | Suggestion</th>
+                                        <th class="text-center" style="width: 80px;" data-i18n="table.voice">आवाज | Voice</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td colspan="4" class="text-muted text-center" data-i18n="table.select_district">जिल्हा चुनें | Select a district to view crop risks.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-lg border-0 h-100 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-info text-white fw-bold" data-i18n="cards.map_title">नक्शा — जिल्हा जोखिम | Map — District Risk</div>
+                    <div class="card-body p-0">
+                        <div id="map" aria-label="Risk map" role="img"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-warning text-dark fw-bold" data-i18n="cards.weather_title">मौसम जानकारी | Weather Information</div>
+                    <div class="card-body">
+                        <div id="weatherPanel" class="row g-3">
+                            <div class="col-6 col-md-3">
+                                <div class="mini-stat bg-gradient-danger text-white">
+                                    <div class="label" data-i18n="weather.temperature">तापमान | Temperature</div>
+                                    <div class="value" id="tempValue">—</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="mini-stat bg-gradient-info text-white">
+                                    <div class="label" data-i18n="weather.humidity">नमी | Humidity</div>
+                                    <div class="value" id="humidityValue">—</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="mini-stat bg-gradient-primary text-white">
+                                    <div class="label" data-i18n="weather.rain_chance">बारिश की संभावना | Rain Chance</div>
+                                    <div class="value" id="rainValue">—</div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="mini-stat bg-gradient-success text-white">
+                                    <div class="label" data-i18n="weather.wind">हवा | Wind</div>
+                                    <div class="value" id="windValue">—</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12">
+                                <div class="alert alert-info animate__animated animate__fadeIn" role="alert">
+                                    <i class="bi bi-info-circle me-2"></i>
+                                    <span data-i18n="weather.info">वास्तविक समय मौसम डेटा प्रदर्शित किया जा रहा है | Real-time weather data is being displayed</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Farmer Features -->
+            <div class="col-12">
+                <div class="row g-4">
+                    <div class="col-12 col-md-6">
+                        <div class="card shadow-lg border-0 h-100 animate__animated animate__fadeInUp">
+                            <div class="card-header bg-gradient-secondary text-white fw-bold" data-i18n="cards.crop_calendar">फसल कैलेंडर | Crop Calendar</div>
+                            <div class="card-body">
+                                <div id="cropCalendar" class="text-center">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden" data-i18n="loading">लोड हो रहा है... | Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="card shadow-lg border-0 h-100 animate__animated animate__fadeInUp">
+                            <div class="card-header bg-gradient-dark text-white fw-bold" data-i18n="cards.soil_info">मिट्टी की जानकारी | Soil Information</div>
+                            <div class="card-body">
+                                <div id="soilInfo" class="text-center">
+                                    <div class="spinner-border text-success" role="status">
+                                        <span class="visually-hidden" data-i18n="loading">लोड हो रहा है... | Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 data-i18n="footer.title">कृषि जोखिम भविष्यवाणी | Agricultural Risk Prediction</h5>
+                    <p class="mb-0" data-i18n="footer.description">किसानों के लिए स्मार्ट कृषि समाधान | Smart agricultural solutions for farmers</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0" data-i18n="footer.copyright">© 2024 कृषि टेक | Agri Tech. सभी अधिकार सुरक्षित | All rights reserved.</p>
+                    <div class="mt-2">
+                        <a href="about.html" class="text-light me-3" data-i18n="footer.about">के बारे में | About</a>
+                        <a href="help.html" class="text-light" data-i18n="footer.help">सहायता | Help</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-YcsIPGdh7t0jQH6x1o0S85G8YfYH7qzZ1n1FQW1f7n/6p1m5I1O3s1KkC4cZ0qkVYzVx9xM1Yw4Yt3ZK3l1fPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- App Scripts -->
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/features.js"></script>
+    
+    <script>
+        // Enhanced home page functionality
+        function scrollToFeatures() {
+            document.getElementById('features-section').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+        
+        // Initialize particle effect for hero section
+        function initializeHeroParticles() {
+            const particlesContainer = document.querySelector('.hero-particles');
+            if (particlesContainer) {
+                for (let i = 0; i < 30; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.cssText = `
+                        position: absolute;
+                        width: ${Math.random() * 4 + 2}px;
+                        height: ${Math.random() * 4 + 2}px;
+                        background: rgba(255, 255, 255, ${Math.random() * 0.5 + 0.2});
+                        border-radius: 50%;
+                        left: ${Math.random() * 100}%;
+                        top: ${Math.random() * 100}%;
+                        animation: float ${Math.random() * 10 + 10}s infinite linear;
+                    `;
+                    particlesContainer.appendChild(particle);
+                }
+            }
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeHeroParticles();
+        });
+    </script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+<style>
+/* Inline critical to avoid FOUC; rest in assets/css/styles.css */
+#map{height:500px;border-radius:0.5rem}
+.bg-gradient-primary{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}
+.bg-gradient-success{background:linear-gradient(135deg,#11998e 0%,#38ef7d 100%)}
+.bg-gradient-info{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)}
+.bg-gradient-warning{background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%)}
+.bg-gradient-danger{background:linear-gradient(135deg,#ff9a9e 0%,#fecfef 100%)}
+.bg-gradient-secondary{background:linear-gradient(135deg,#a8edea 0%,#fed6e3 100%)}
+.bg-gradient-dark{background:linear-gradient(135deg,#2c3e50 0%,#3498db 100%)}
+
+/* Hero Section Styles */
+.hero-section {
+    position: relative;
+    min-height: 80vh;
+    border-radius: 1.5rem;
+    padding: 3rem 2rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+    animation: heroGlow 4s ease-in-out infinite alternate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Gradient overlay above slideshow for legibility */
+.hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.55) 0%, rgba(118, 75, 162, 0.55) 50%, rgba(240, 147, 251, 0.45) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Full-bleed slideshow behind content */
+.hero-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-slideshow .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    will-change: opacity, transform;
+    animation: slideShow 36s infinite ease-in-out;
+}
+
+.hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
+.hero-slideshow .slide:nth-child(2) { animation-delay: 6s; }
+.hero-slideshow .slide:nth-child(3) { animation-delay: 12s; }
+.hero-slideshow .slide:nth-child(4) { animation-delay: 18s; }
+.hero-slideshow .slide:nth-child(5) { animation-delay: 24s; }
+.hero-slideshow .slide:nth-child(6) { animation-delay: 30s; }
+
+@keyframes slideShow {
+    0% { opacity: 0; transform: scale(1); }
+    4% { opacity: 1; }
+    16% { opacity: 1; transform: scale(1.05); }
+    20% { opacity: 0; transform: scale(1.08); }
+    100% { opacity: 0; }
+}
+
+@keyframes heroGlow {
+    0% {
+        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+    }
+    100% {
+        box-shadow: 0 20px 80px rgba(102, 126, 234, 0.5);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-badge {
+    animation: bounceIn 1s ease-out;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.hero-stats {
+    margin-top: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    color: white;
+    position: relative;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.stat-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #ffd700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    animation: iconPulse 2s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+/* Hero Shapes */
+.hero-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: floatShape 6s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 120px;
+    height: 120px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.shape-3 {
+    width: 60px;
+    height: 60px;
+    top: 30%;
+    right: 30%;
+    animation-delay: 4s;
+}
+
+.shape-4 {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 1s;
+}
+
+@keyframes floatShape {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 1;
+    }
+}
+
+/* Form Card Styles */
+.form-card {
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.form-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.form-card .card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.form-card .card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Input Group Styles */
+.input-group-text {
+    border: none;
+    font-weight: bold;
+}
+
+.form-select {
+    border-left: none;
+    transition: all 0.3s ease;
+}
+
+.form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* Button Styles */
+.btn-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+}
+
+/* Enhanced Card Styles */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+
+.card-header {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+/* Enhanced Hero Actions */
+.hero-actions {
+    margin-top: 2rem;
+}
+
+.btn-gradient-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.btn-gradient-primary:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    color: white;
+}
+
+.btn-outline-light {
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Feature Cards */
+.feature-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.feature-card:hover::before {
+    opacity: 1;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.feature-card h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.feature-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.feature-stats {
+    margin-top: auto;
+}
+
+.feature-stats .stat {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Step Cards */
+.step-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.03) 0%, rgba(118, 75, 162, 0.03) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.step-card:hover::before {
+    opacity: 1;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0 auto 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover .step-number {
+    transform: scale(1.1);
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin: 0 auto 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.step-card:hover .step-icon {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.step-card h4 {
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.step-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* Additional Hero Shapes */
+.shape-5 {
+    width: 40px;
+    height: 40px;
+    top: 80%;
+    left: 80%;
+    animation-delay: 3s;
+}
+
+.shape-6 {
+    width: 90px;
+    height: 90px;
+    top: 10%;
+    right: 5%;
+    animation-delay: 5s;
+}
+
+/* Hero Particles */
+.hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.particle {
+    animation: float 20s infinite linear;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Background Images for Different Sections */
+.features-header {
+    background-image: 
+        linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%),
+        url('assets/images/green field.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.feature-card {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%),
+        url('assets/images/wheat field.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.feature-card:nth-child(2) {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%),
+        url('assets/images/rice field.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.feature-card:nth-child(3) {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%),
+        url('assets/images/modern farm.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.step-card {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%),
+        url('assets/images/harvest.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.step-card:nth-child(2) {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%),
+        url('assets/images/farm landscape.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.step-card:nth-child(3) {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%),
+        url('assets/images/green field.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.feature-card:hover, .step-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 2rem 1rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .hero-stats .col-auto {
+        margin-bottom: 1rem;
+    }
+    
+    .feature-card, .step-card {
+        padding: 1.5rem;
+    }
+    
+    .feature-icon, .step-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .hero-actions .btn {
+        display: block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }
+}
+</style>
+</html>
+
+

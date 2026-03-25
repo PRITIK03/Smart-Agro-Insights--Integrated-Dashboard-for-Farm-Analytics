@@ -1,0 +1,2820 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="dashboard.title">Agricultural Intelligence Dashboard</title>
+    <meta name="description" data-i18n="dashboard.description" content="Advanced agricultural analytics and predictive insights for farmers">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-graph-up-arrow me-2"></i>
+                <span data-i18n="dashboard.brand">कृषि बुद्धिमत्ता डैशबोर्ड | Agricultural Intelligence Dashboard</span>
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="index.html" data-i18n="nav.home">होम | Home</a>
+                <a class="nav-link" href="about.html" data-i18n="nav.about">के बारे में | About</a>
+                <a class="nav-link" href="help.html" data-i18n="nav.help">सहायता | Help</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid my-4">
+        <!-- Hero Section with Animated Background -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="hero-dashboard position-relative overflow-hidden">
+                    <div class="hero-slideshow">
+                        <div class="slide" style="background-image: url('assets/images/farm landscape.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/green field.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/harvest.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/modern farm.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/rice field.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/wheat field.jpg');"></div>
+                    </div>
+                    <div class="hero-content text-center text-white py-5">
+                        <div class="hero-badge mb-3 animate__animated animate__bounceIn">
+                            <span class="badge bg-gradient-warning text-dark px-3 py-2">
+                                <i class="bi bi-lightning-fill me-2"></i>
+                                <span data-i18n="dashboard.live_data">लाइव डेटा | Live Data</span>
+                            </span>
+                        </div>
+                        <h1 class="display-3 fw-bold mb-3 animate__animated animate__fadeInDown">
+                            <i class="bi bi-graph-up-arrow me-3 text-warning"></i>
+                            <span data-i18n="dashboard.hero_title">कृषि बुद्धिमत्ता केंद्र | Agricultural Intelligence Center</span>
+                        </h1>
+                        <p class="lead mb-4 animate__animated animate__fadeInUp" data-i18n="dashboard.hero_subtitle">
+                            AI-संचालित कृषि अंतर्दृष्टि और भविष्यवाणी | AI-Powered Agricultural Insights & Predictions
+                        </p>
+                        <div class="hero-stats row g-4 justify-content-center">
+                            <div class="col-auto">
+                                <div class="stat-item animate__animated animate__zoomIn" data-aos="zoom-in" data-aos-delay="100">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-people-fill"></i>
+                                    </div>
+                                    <div class="stat-number" id="totalFarmers">2,847</div>
+                                    <div class="stat-label" data-i18n="dashboard.active_farmers">सक्रिय किसान | Active Farmers</div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="stat-item animate__animated animate__zoomIn" data-aos="zoom-in" data-aos-delay="200">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-seedling"></i>
+                                    </div>
+                                    <div class="stat-number" id="cropsMonitored">156</div>
+                                    <div class="stat-label" data-i18n="dashboard.crops_monitored">निगरानी वाली फसलें | Crops Monitored</div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="stat-item animate__animated animate__zoomIn" data-aos="zoom-in" data-aos-delay="300">
+                                    <div class="stat-icon">
+                                        <i class="bi bi-graph-up-arrow"></i>
+                                    </div>
+                                    <div class="stat-number" id="accuracyRate">94%</div>
+                                    <div class="stat-label" data-i18n="dashboard.accuracy_rate">सटीकता दर | Accuracy Rate</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-particles"></div>
+                    <div class="hero-shapes">
+                        <div class="shape shape-1"></div>
+                        <div class="shape shape-2"></div>
+                        <div class="shape shape-3"></div>
+                        <div class="shape shape-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Key Metrics Row -->
+        <div class="row g-4 mb-4">
+            <div class="col-12">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInDown">
+                    <div class="card-header bg-gradient-success text-white d-flex justify-content-between align-items-center">
+                        <h4 class="mb-0" data-i18n="dashboard.key_metrics">मुख्य मेट्रिक्स | Key Agricultural Metrics</h4>
+                        <div class="live-indicator">
+                            <span class="badge bg-light text-dark">
+                                <i class="bi bi-circle-fill text-success me-1"></i>
+                                <span data-i18n="dashboard.live_data">लाइव डेटा | Live Data</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <div class="metric-card temperature-card text-white" data-aos="fade-up" data-aos-delay="100">
+                                    <div class="metric-glow"></div>
+                                    <div class="metric-icon">
+                                        <i class="bi bi-thermometer-half"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="metric-value" id="avgTemp">28°C</div>
+                                        <div class="metric-label" data-i18n="dashboard.avg_temp">औसत तापमान | Avg Temperature</div>
+                                        <div class="metric-trend">
+                                            <i class="bi bi-arrow-up text-success"></i>
+                                            <span class="small">+2.3°C</span>
+                                        </div>
+                                    </div>
+                                    <div class="metric-pulse"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="metric-card rainfall-card text-white" data-aos="fade-up" data-aos-delay="200">
+                                    <div class="metric-glow"></div>
+                                    <div class="metric-icon">
+                                        <i class="bi bi-droplet"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="metric-value" id="rainfall">45mm</div>
+                                        <div class="metric-label" data-i18n="dashboard.rainfall">वर्षा | Rainfall</div>
+                                        <div class="metric-trend">
+                                            <i class="bi bi-arrow-down text-warning"></i>
+                                            <span class="small">-12%</span>
+                                        </div>
+                                    </div>
+                                    <div class="metric-pulse"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="metric-card yield-card text-white" data-aos="fade-up" data-aos-delay="300">
+                                    <div class="metric-glow"></div>
+                                    <div class="metric-icon">
+                                        <i class="bi bi-graph-up"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="metric-value" id="cropYield">85%</div>
+                                        <div class="metric-label" data-i18n="dashboard.crop_yield">फसल उत्पादन | Crop Yield</div>
+                                        <div class="metric-trend">
+                                            <i class="bi bi-arrow-up text-success"></i>
+                                            <span class="small">+5.2%</span>
+                                        </div>
+                                    </div>
+                                    <div class="metric-pulse"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="metric-card risk-card text-white" data-aos="fade-up" data-aos-delay="400">
+                                    <div class="metric-glow"></div>
+                                    <div class="metric-icon">
+                                        <i class="bi bi-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="metric-content">
+                                        <div class="metric-value" id="riskLevel">Medium</div>
+                                        <div class="metric-label" data-i18n="dashboard.risk_level">जोखिम स्तर | Risk Level</div>
+                                        <div class="metric-trend">
+                                            <i class="bi bi-arrow-down text-success"></i>
+                                            <span class="small">-8%</span>
+                                        </div>
+                                    </div>
+                                    <div class="metric-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Analytics Row -->
+        <div class="row g-4">
+            <div class="col-12 col-lg-8">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-info text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0" data-i18n="dashboard.weather_forecast">7-दिन का मौसम पूर्वानुमान | 7-Day Weather Forecast</h5>
+                        <div class="chart-controls">
+                            <button class="btn btn-sm btn-light" onclick="toggleWeatherChart()">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="weather-summary mb-3">
+                            <div class="row text-center">
+                                <div class="col-3">
+                                    <div class="weather-stat">
+                                        <i class="bi bi-thermometer-sun text-danger"></i>
+                                        <div class="stat-value" id="maxTemp">32°C</div>
+                                        <div class="stat-label">Max</div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="weather-stat">
+                                        <i class="bi bi-thermometer-snow text-primary"></i>
+                                        <div class="stat-value" id="minTemp">18°C</div>
+                                        <div class="stat-label">Min</div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="weather-stat">
+                                        <i class="bi bi-droplet text-info"></i>
+                                        <div class="stat-value" id="humidity">65%</div>
+                                        <div class="stat-label">Humidity</div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="weather-stat">
+                                        <i class="bi bi-wind text-warning"></i>
+                                        <div class="stat-value" id="windSpeed">12 km/h</div>
+                                        <div class="stat-label">Wind</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <canvas id="weatherChart" height="120"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-warning text-dark d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0" data-i18n="dashboard.crop_recommendations">फसल सुझाव | Crop Recommendations</h5>
+                        <div class="ai-indicator">
+                            <i class="bi bi-robot text-primary"></i>
+                            <span class="small">AI Powered</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="cropRecommendations">
+                            <div class="recommendation-item" data-aos="fade-left" data-aos-delay="100">
+                                <div class="crop-icon">🌾</div>
+                                <div class="crop-info">
+                                    <h6>Wheat</h6>
+                                    <small class="text-success">Optimal planting time</small>
+                                    <div class="progress mt-1" style="height: 4px;">
+                                        <div class="progress-bar bg-success" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                                <div class="crop-score">95%</div>
+                            </div>
+                            <div class="recommendation-item" data-aos="fade-left" data-aos-delay="200">
+                                <div class="crop-icon">🌽</div>
+                                <div class="crop-info">
+                                    <h6>Maize</h6>
+                                    <small class="text-warning">Good conditions</small>
+                                    <div class="progress mt-1" style="height: 4px;">
+                                        <div class="progress-bar bg-warning" style="width: 78%"></div>
+                                    </div>
+                                </div>
+                                <div class="crop-score">78%</div>
+                            </div>
+                            <div class="recommendation-item" data-aos="fade-left" data-aos-delay="300">
+                                <div class="crop-icon">🥕</div>
+                                <div class="crop-info">
+                                    <h6>Vegetables</h6>
+                                    <small class="text-info">Moderate risk</small>
+                                    <div class="progress mt-1" style="height: 4px;">
+                                        <div class="progress-bar bg-info" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                <div class="crop-score">65%</div>
+                            </div>
+                            <div class="recommendation-item" data-aos="fade-left" data-aos-delay="400">
+                                <div class="crop-icon">🌻</div>
+                                <div class="crop-info">
+                                    <h6>Sunflower</h6>
+                                    <small class="text-danger">High risk</small>
+                                    <div class="progress mt-1" style="height: 4px;">
+                                        <div class="progress-bar bg-danger" style="width: 35%"></div>
+                                    </div>
+                                </div>
+                                <div class="crop-score">35%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real-time Monitoring Row -->
+        <div class="row g-4 mt-4">
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                            <button class="btn btn-sm btn-light" onclick="toggleYieldChart()">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Yield Prediction Summary -->
+                        <div class="yield-prediction-summary mb-4">
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <div class="yield-prediction-item">
+                                        <div class="prediction-icon bg-success">
+                                            <i class="bi bi-arrow-up-circle"></i>
+                                        </div>
+                                        <div class="prediction-content">
+                                            <div class="prediction-label">Current Season</div>
+                                            <div class="prediction-value">2.4 T/ha</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="yield-prediction-item">
+                                        <div class="prediction-icon bg-info">
+                                            <i class="bi bi-graph-up"></i>
+                                        </div>
+                                        <div class="prediction-content">
+                                            <div class="prediction-label">Growth Rate</div>
+                                            <div class="prediction-value">+12%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Main Yield Chart -->
+                        <div class="yield-chart-container">
+                            <canvas id="yieldChart" height="250"></canvas>
+                        </div>
+                        
+                        <!-- Yield Analysis -->
+                        <div class="yield-analysis mt-4">
+                            <h6 class="analysis-title">
+                                <i class="bi bi-bar-chart me-2"></i>
+                                Yield Analysis by Crop
+                            </h6>
+                            <div class="yield-crop-analysis">
+                                <div class="crop-yield-item">
+                                    <div class="crop-info">
+                                        <div class="crop-icon">🌾</div>
+                                        <div class="crop-details">
+                                            <div class="crop-name">Wheat</div>
+                                            <div class="crop-yield">3.2 T/ha</div>
+                                        </div>
+                                    </div>
+                                    <div class="yield-progress">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-success" style="width: 85%"></div>
+                                        </div>
+                                        <div class="yield-percentage">85%</div>
+                                    </div>
+                                </div>
+                                <div class="crop-yield-item">
+                                    <div class="crop-info">
+                                        <div class="crop-icon">🌾</div>
+                                        <div class="crop-details">
+                                            <div class="crop-name">Rice</div>
+                                            <div class="crop-yield">2.8 T/ha</div>
+                                        </div>
+                                    </div>
+                                    <div class="yield-progress">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-info" style="width: 78%"></div>
+                                        </div>
+                                        <div class="yield-percentage">78%</div>
+                                    </div>
+                                </div>
+                                <div class="crop-yield-item">
+                                    <div class="crop-info">
+                                        <div class="crop-icon">🌽</div>
+                                        <div class="crop-details">
+                                            <div class="crop-name">Maize</div>
+                                            <div class="crop-yield">2.1 T/ha</div>
+                                        </div>
+                                    </div>
+                                    <div class="yield-progress">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" style="width: 65%"></div>
+                                        </div>
+                                        <div class="yield-percentage">65%</div>
+                                    </div>
+                                </div>
+                                <div class="crop-yield-item">
+                                    <div class="crop-info">
+                                        <div class="crop-icon">🌻</div>
+                                        <div class="crop-details">
+                                            <div class="crop-name">Cotton</div>
+                                            <div class="crop-yield">1.8 T/ha</div>
+                                        </div>
+                                    </div>
+                                    <div class="yield-progress">
+                                        <div class="progress">
+                                            <div class="progress-bar bg-primary" style="width: 72%"></div>
+                                        </div>
+                                        <div class="yield-percentage">72%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Yield Summary Stats -->
+                        <div class="yield-summary-stats mt-4">
+                            <div class="row g-2">
+                                <div class="col-4">
+                                    <div class="yield-stat-card">
+                                        <div class="stat-icon bg-success">
+                                            <i class="bi bi-trending-up"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                            <div class="stat-value">+12%</div>
+                                            <div class="stat-label">vs Last Year</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="yield-stat-card">
+                                        <div class="stat-icon bg-primary">
+                                            <i class="bi bi-graph-up"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                            <div class="stat-value">2.4T/ha</div>
+                                            <div class="stat-label">Expected Yield</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="yield-stat-card">
+                                        <div class="stat-icon bg-warning">
+                                            <i class="bi bi-shield-check"></i>
+                                        </div>
+                                        <div class="stat-content">
+                                            <div class="stat-value">85%</div>
+                                            <div class="stat-label">Confidence</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Enhanced Market Prices and Analytics Row -->
+        <div class="row g-4 mt-4">
+            <div class="col-12 col-lg-8">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp market-card">
+                    <div class="card-header bg-gradient-market text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="bi bi-currency-rupee me-2"></i>
+                            <span>बाजार मूल्य विश्लेषण | Market Price Analysis</span>
+                        </h5>
+                        <div class="market-controls">
+                            <button class="btn btn-sm btn-light me-2" onclick="togglePriceChart()">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                            <button class="btn btn-sm btn-warning" onclick="showPricePrediction()">
+                                <i class="bi bi-graph-up-arrow"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Left Column: Price Trend Chart -->
+                            <div class="col-md-8">
+                                <div class="chart-container" style="position: relative; height:300px;">
+                                    <canvas id="priceTrendChart"></canvas>
+                                </div>
+                                
+                                <!-- Price Comparison Table -->
+                                <div class="price-comparison-table mt-4">
+                                    <h6 class="table-title">
+                                        <i class="bi bi-table me-2"></i>
+                                        Price Comparison (₹/Quintal)
+                                    </h6>
+                                    <div class="table-responsive">
+                                <table class="table table-hover price-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Crop</th>
+                                            <th>Current Price</th>
+                                            <th>Last Week</th>
+                                            <th>Change</th>
+                                            <th>Trend</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="crop-cell">
+                                                    <span class="crop-emoji">🌾</span>
+                                                    <span class="crop-name">Wheat</span>
+                                                </div>
+                                            </td>
+                                            <td class="price-current">₹2,100</td>
+                                            <td class="price-previous">₹1,980</td>
+                                            <td class="price-change positive">+6.1%</td>
+                                            <td><i class="bi bi-arrow-up text-success"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="crop-cell">
+                                                    <span class="crop-emoji">🌾</span>
+                                                    <span class="crop-name">Rice</span>
+                                                </div>
+                                            </td>
+                                            <td class="price-current">₹1,850</td>
+                                            <td class="price-previous">₹1,920</td>
+                                            <td class="price-change negative">-3.6%</td>
+                                            <td><i class="bi bi-arrow-down text-danger"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="crop-cell">
+                                                    <span class="crop-emoji">🌽</span>
+                                                    <span class="crop-name">Maize</span>
+                                                </div>
+                                            </td>
+                                            <td class="price-current">₹1,650</td>
+                                            <td class="price-previous">₹1,580</td>
+                                            <td class="price-change positive">+4.4%</td>
+                                            <td><i class="bi bi-arrow-up text-success"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="crop-cell">
+                                                    <span class="crop-emoji">🌻</span>
+                                                    <span class="crop-name">Cotton</span>
+                                                </div>
+                                            </td>
+                                            <td class="price-current">₹5,500</td>
+                                            <td class="price-previous">₹5,200</td>
+                                            <td class="price-change positive">+5.8%</td>
+                                            <td><i class="bi bi-arrow-up text-success"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="crop-cell">
+                                                    <span class="crop-emoji">🫘</span>
+                                                    <span class="crop-name">Soybean</span>
+                                                </div>
+                                            </td>
+                                            <td class="price-current">₹3,200</td>
+                                            <td class="price-previous">₹3,150</td>
+                                            <td class="price-change positive">+1.6%</td>
+                                            <td><i class="bi bi-arrow-up text-success"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Price Trend Indicators -->
+                        <div class="price-trends mt-3">
+                            <div class="row g-2">
+                                <div class="col-6 col-md-3">
+                                    <div class="trend-indicator">
+                                        <div class="trend-icon bg-success">
+                                            <i class="bi bi-trending-up"></i>
+                                        </div>
+                                        <div class="trend-text">
+                                            <div class="trend-label">Best Performer</div>
+                                            <div class="trend-value">Cotton (+7.5%)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="trend-indicator">
+                                        <div class="trend-icon bg-danger">
+                                            <i class="bi bi-trending-down"></i>
+                                        </div>
+                                        <div class="trend-text">
+                                            <div class="trend-label">Declining</div>
+                                            <div class="trend-value">Rice (-2.1%)</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="trend-indicator">
+                                        <div class="trend-icon bg-info">
+                                            <i class="bi bi-graph-up"></i>
+                                        </div>
+                                        <div class="trend-text">
+                                            <div class="trend-label">Avg. Price</div>
+                                            <div class="trend-value">₹2,775</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <div class="trend-indicator">
+                                        <div class="trend-icon bg-warning">
+                                            <i class="bi bi-lightning"></i>
+                                        </div>
+                                        <div class="trend-text">
+                                            <div class="trend-label">Volatility</div>
+                                            <div class="trend-value">Medium</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column: Market Share and Price Summary -->
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-market text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="bi bi-pie-chart-fill me-2"></i>
+                            <span>Market Share & Prices</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Market Share Chart -->
+                        <div class="chart-container mb-4" style="position: relative; height:300px;">
+                            <canvas id="marketShareChart"></canvas>
+                        </div>
+                        
+                        <!-- Price Summary Cards -->
+                        <div class="price-summary-card bg-gradient-wheat mb-3">
+                            <div class="price-icon">
+                                <i class="bi bi-wheat"></i>
+                            </div>
+                            <div class="price-info">
+                                <div class="price-label">Wheat</div>
+                                <div class="price-value">₹2,100</div>
+                                <div class="price-change positive">
+                                    <i class="bi bi-arrow-up"></i> +5.2%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price-summary-card bg-gradient-rice mb-3">
+                            <div class="price-icon">
+                                <i class="bi bi-droplet"></i>
+                            </div>
+                            <div class="price-info">
+                                <div class="price-label">Rice</div>
+                                <div class="price-value">₹1,850</div>
+                                <div class="price-change negative">
+                                    <i class="bi bi-arrow-down"></i> -2.1%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price-summary-card bg-gradient-maize mb-3">
+                            <div class="price-icon">
+                                <i class="bi bi-seedling"></i>
+                            </div>
+                            <div class="price-info">
+                                <div class="price-label">Maize</div>
+                                <div class="price-value">₹1,650</div>
+                                <div class="price-change positive">
+                                    <i class="bi bi-arrow-up"></i> +3.8%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="price-summary-card bg-gradient-cotton">
+                            <div class="price-icon">
+                                <i class="bi bi-flower1"></i>
+                            </div>
+                            <div class="price-info">
+                                <div class="price-label">Cotton</div>
+                                <div class="price-value">₹5,500</div>
+                                <div class="price-change positive">
+                                    <i class="bi bi-arrow-up"></i> +7.5%
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Alerts Section -->
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp alerts-card">
+                    <div class="card-header bg-gradient-alerts text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="bi bi-bell-fill me-2"></i>
+                            <span>स्मार्ट अलर्ट | Smart Alerts</span>
+                        </h5>
+                        <div class="alert-controls">
+                            <button class="btn btn-sm btn-light" onclick="refreshAlerts()">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert-list">
+                            <div class="alert-item alert-price-up">
+                                <div class="alert-icon">
+                                    <i class="bi bi-arrow-up-circle-fill"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Price Surge Alert</div>
+                                    <div class="alert-message">Wheat prices increased by 5% this week</div>
+                                    <div class="alert-time">2 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="alert-item alert-weather">
+                                <div class="alert-icon">
+                                    <i class="bi bi-cloud-rain-fill"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Weather Warning</div>
+                                    <div class="alert-message">Heavy rainfall expected in next 3 days</div>
+                                    <div class="alert-time">4 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="alert-item alert-opportunity">
+                                <div class="alert-icon">
+                                    <i class="bi bi-lightbulb-fill"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Planting Opportunity</div>
+                                    <div class="alert-message">Optimal time for rice planting</div>
+                                    <div class="alert-time">6 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="alert-item alert-risk">
+                                <div class="alert-icon">
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Risk Alert</div>
+                                    <div class="alert-message">High pest risk detected in cotton crops</div>
+                                    <div class="alert-time">8 hours ago</div>
+                                </div>
+                            </div>
+                            <div class="alert-item alert-market">
+                                <div class="alert-icon">
+                                    <i class="bi bi-graph-up-arrow"></i>
+                                </div>
+                                <div class="alert-content">
+                                    <div class="alert-title">Market Update</div>
+                                    <div class="alert-message">Cotton futures showing bullish trend</div>
+                                    <div class="alert-time">12 hours ago</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Market Sentiment -->
+                        <div class="market-sentiment mt-4">
+                            <h6 class="sentiment-title">
+                                <i class="bi bi-emoji-smile me-2"></i>
+                                Market Sentiment
+                            </h6>
+                            <div class="sentiment-meter">
+                                <div class="sentiment-bar">
+                                    <div class="sentiment-fill positive" style="width: 75%"></div>
+                                </div>
+                                <div class="sentiment-label">Bullish (75%)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Advanced Analytics Summary -->
+        <div class="row g-4 mt-4">
+            <div class="col-12">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-dark text-white text-center">
+                        <h4 class="mb-0">
+                            <i class="bi bi-graph-up-arrow me-2"></i>
+                            <span>उन्नत विश्लेषण | Advanced Analytics</span>
+                        </h4>
+                        <p class="mb-0 mt-2">Detailed charts and comprehensive agricultural insights</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-4">
+                            <div class="col-md-3">
+                                <div class="analytics-card text-center">
+                                    <div class="analytics-icon bg-primary text-white mx-auto mb-3">
+                                        <i class="bi bi-bar-chart"></i>
+                                    </div>
+                                    <h6>फसल उत्पादन | Crop Production</h6>
+                                    <p class="small text-muted">Detailed production analysis and trends</p>
+                                    <div class="analytics-stats">
+                                        <span class="stat-value text-success">+15%</span>
+                                        <span class="stat-label">Growth</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="analytics-card text-center">
+                                    <div class="analytics-icon bg-info text-white mx-auto mb-3">
+                                        <i class="bi bi-cloud-rain"></i>
+                                    </div>
+                                    <h6>मौसम विश्लेषण | Weather Analysis</h6>
+                                    <p class="small text-muted">Comprehensive weather patterns and forecasts</p>
+                                    <div class="analytics-stats">
+                                        <span class="stat-value text-danger">28°C</span>
+                                        <span class="stat-label">Current Temp</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="analytics-card text-center">
+                                    <div class="analytics-icon bg-success text-white mx-auto mb-3">
+                                        <i class="bi bi-currency-rupee"></i>
+                                    </div>
+                                    <h6>लाभ विश्लेषण | Profit Analysis</h6>
+                                    <p class="small text-muted">Financial performance and profit margins</p>
+                                    <div class="analytics-stats">
+                                        <span class="stat-value text-success">₹45K</span>
+                                        <span class="stat-label">Monthly</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="analytics-card text-center">
+                                    <div class="analytics-icon bg-warning text-white mx-auto mb-3">
+                                        <i class="bi bi-geo-alt"></i>
+                                    </div>
+                                    <h6>क्षेत्रीय विश्लेषण | Regional Analysis</h6>
+                                    <p class="small text-muted">Zone-wise performance and comparisons</p>
+                                    <div class="analytics-stats">
+                                        <span class="stat-value text-primary">3.2 T/ha</span>
+                                        <span class="stat-label">North Zone</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="analytics.html" class="btn btn-primary btn-lg">
+                                <i class="bi bi-arrow-right me-2"></i>
+                                View Detailed Analytics
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced Analytics Charts Row -->
+        <div class="row g-4 mt-4">
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-primary text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="bi bi-bar-chart me-2"></i>
+                            <span>फसल उत्पादकता रुझान | Crop Productivity Trends</span>
+                        </h5>
+                        <div class="chart-controls">
+                            <button class="btn btn-sm btn-light" onclick="toggleProductivityChart()">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="productivityChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-success text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="bi bi-pie-chart me-2"></i>
+                            <span>मिट्टी स्वास्थ्य विश्लेषण | Soil Health Analysis</span>
+                        </h5>
+                        <div class="chart-controls">
+                            <button class="btn btn-sm btn-light" onclick="toggleSoilChart()">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="soilHealthChart" height="300"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Analytics Row -->
+        <div class="row g-4 mt-4">
+            <div class="col-12 col-lg-8">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-warning text-dark d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="bi bi-currency-rupee me-2"></i>
+                            <span>वित्तीय प्रदर्शन | Financial Performance</span>
+                        </h5>
+                        <div class="chart-controls">
+                            <button class="btn btn-sm btn-dark" onclick="toggleFinancialChart()">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="financialChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-info text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-graph-up-arrow me-2"></i>
+                            <span>लाभ मार्जिन | Profit Margins</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="profitChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Risk Analysis and Weather Patterns Row -->
+        <div class="row g-4 mt-4">
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-danger text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                                <i class="bi bi-exclamation-triangle me-2"></i>
+                            <span>जोखिम विश्लेषण | Risk Analysis</span>
+                        </h5>
+                        <div class="chart-controls">
+                            <button class="btn btn-sm btn-light" onclick="toggleRiskChart()">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                            </div>
+                            </div>
+                    <div class="card-body">
+                        <canvas id="riskAnalysisChart" height="250"></canvas>
+                            </div>
+                            </div>
+                        </div>
+            <div class="col-12 col-lg-6">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-secondary text-dark d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="bi bi-cloud-rain me-2"></i>
+                            <span>मौसम पैटर्न | Weather Patterns</span>
+                        </h5>
+                        <div class="chart-controls">
+                            <button class="btn btn-sm btn-dark" onclick="toggleWeatherPatternChart()">
+                                <i class="bi bi-arrow-clockwise"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="weatherPatternChart" height="250"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Insights Row -->
+        <div class="row g-4 mt-4">
+            <div class="col-12">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-dark text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-robot me-2"></i>
+                            <span data-i18n="dashboard.ai_insights">AI-संचालित कृषि अंतर्दृष्टि | AI-Powered Agricultural Insights</span>
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="insight-card">
+                                    <div class="insight-icon bg-primary text-white">
+                                        <i class="bi bi-lightbulb"></i>
+                                    </div>
+                                    <h6 data-i18n="dashboard.insight1_title">स्मार्ट सिंचाई | Smart Irrigation</h6>
+                                    <p class="small" data-i18n="dashboard.insight1_desc">Based on soil moisture and weather forecast, reduce irrigation by 20% this week.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="insight-card">
+                                    <div class="insight-icon bg-success text-white">
+                                        <i class="bi bi-graph-up"></i>
+                                    </div>
+                                    <h6 data-i18n="dashboard.insight2_title">उत्पादन अनुकूलन | Yield Optimization</h6>
+                                    <p class="small" data-i18n="dashboard.insight2_desc">Switch to drought-resistant wheat variety for 15% better yield.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="insight-card">
+                                    <div class="insight-icon bg-warning text-white">
+                                        <i class="bi bi-shield-check"></i>
+                                    </div>
+                                    <h6 data-i18n="dashboard.insight3_title">रोग निवारण | Disease Prevention</h6>
+                                    <p class="small" data-i18n="dashboard.insight3_desc">Apply fungicide spray in next 48 hours to prevent rust disease.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0" data-i18n="footer.copyright"> 2024 कृषि टेक | Agri Tech. सभी अधिकार सुरक्षित | All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom Scripts -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script>
+        
+        // Initialize everything when the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100
+            });
+            
+            // Initialize dashboard
+            if (typeof initializeDashboard === 'function') {
+                try {
+                    initializeDashboard();
+                } catch (error) {
+                    console.error('Error during dashboard initialization:', error);
+                }
+            }
+        });
+    </script>
+</body>
+<style>
+/* Hero Section Styles */
+.hero-dashboard {
+    background: transparent;
+    border-radius: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    min-height: 350px;
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+    animation: heroGlow 4s ease-in-out infinite alternate;
+}
+
+/* Gradient overlay for readability */
+.hero-dashboard::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.55) 0%, rgba(118, 75, 162, 0.55) 50%, rgba(240, 147, 251, 0.45) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Slideshow sits behind content */
+.hero-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-slideshow .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    will-change: opacity, transform;
+    animation: slideShow 36s infinite ease-in-out;
+}
+
+.hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
+.hero-slideshow .slide:nth-child(2) { animation-delay: 6s; }
+.hero-slideshow .slide:nth-child(3) { animation-delay: 12s; }
+.hero-slideshow .slide:nth-child(4) { animation-delay: 18s; }
+.hero-slideshow .slide:nth-child(5) { animation-delay: 24s; }
+.hero-slideshow .slide:nth-child(6) { animation-delay: 30s; }
+
+@keyframes slideShow {
+    0% { opacity: 0; transform: scale(1); }
+    4% { opacity: 1; }
+    16% { opacity: 1; transform: scale(1.05); }
+    20% { opacity: 0; transform: scale(1.08); }
+    100% { opacity: 0; }
+}
+
+@keyframes heroGlow {
+    0% {
+        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+    }
+    100% {
+        box-shadow: 0 20px 80px rgba(102, 126, 234, 0.5);
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Enhanced Metric Cards */
+.metric-card {
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    backdrop-filter: blur(10px);
+}
+
+/* Temperature Card */
+.temperature-card {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #ff9ff3 100%);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+}
+
+.temperature-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(255, 107, 107, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Rainfall Card */
+.rainfall-card {
+    background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 50%, #093637 100%);
+    box-shadow: 0 10px 30px rgba(78, 205, 196, 0.3);
+}
+
+.rainfall-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(78, 205, 196, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Yield Card */
+.yield-card {
+    background: linear-gradient(135deg, #feca57 0%, #ff9ff3 50%, #54a0ff 100%);
+    box-shadow: 0 10px 30px rgba(254, 202, 87, 0.3);
+}
+
+.yield-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(254, 202, 87, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Risk Card */
+.risk-card {
+    background: linear-gradient(135deg, #ff3838 0%, #ff6b6b 50%, #ff9ff3 100%);
+    box-shadow: 0 10px 30px rgba(255, 56, 56, 0.3);
+}
+
+.risk-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(255, 56, 56, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.metric-card:hover::before {
+    left: 100%;
+}
+
+.metric-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.metric-icon {
+    font-size: 2.5rem;
+    margin-right: 1rem;
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+}
+
+.metric-card:hover .metric-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.metric-content {
+    flex: 1;
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.metric-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.metric-trend {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+/* Weather Summary */
+.weather-summary {
+    background: rgba(255,255,255,0.1);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.weather-stat {
+    text-align: center;
+}
+
+.weather-stat i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.25rem 0;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+}
+
+/* Enhanced Recommendation Items */
+.recommendation-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.recommendation-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent-color, #007bff);
+    transition: width 0.3s ease;
+}
+
+.recommendation-item:hover::before {
+    width: 8px;
+}
+
+.recommendation-item:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+    transform: translateX(8px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.crop-icon {
+    font-size: 2rem;
+    margin-right: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.recommendation-item:hover .crop-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.crop-info {
+    flex: 1;
+}
+
+.crop-info h6 {
+    margin: 0 0 0.25rem 0;
+    font-weight: 600;
+}
+
+.crop-info small {
+    font-size: 0.8rem;
+}
+
+.crop-score {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #28a745;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Real-time Monitoring */
+.monitoring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.monitor-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    transition: all 0.3s ease;
+}
+
+.monitor-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.monitor-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.monitor-content {
+    flex: 1;
+}
+
+.monitor-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+}
+
+.monitor-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0.25rem 0;
+}
+
+.monitor-status {
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+/* Yield Summary */
+.yield-summary {
+    background: rgba(0,0,0,0.05);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.yield-stat {
+    text-align: center;
+}
+
+.yield-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0.25rem 0;
+}
+
+.yield-label {
+    font-size: 0.8rem;
+    color: #666;
+    margin: 0;
+}
+
+/* Alert Items */
+.alert-item {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.alert-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Insight Cards */
+.insight-card {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.insight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.insight-card:hover::before {
+    opacity: 1;
+}
+
+.insight-card:hover {
+    background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.insight-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.insight-card:hover .insight-icon {
+    transform: scale(1.1) rotate(10deg);
+}
+
+/* Live Indicator */
+.live-indicator {
+    display: flex;
+    align-items: center;
+}
+
+.live-indicator .badge {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(40, 167, 69, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(40, 167, 69, 0);
+    }
+}
+
+/* AI Indicator */
+.ai-indicator {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.ai-indicator i {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-3px);
+    }
+    60% {
+        transform: translateY(-2px);
+    }
+}
+
+/* Chart Controls */
+.chart-controls button {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.chart-controls button:hover {
+    transform: rotate(180deg);
+    background-color: #f8f9fa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-dashboard {
+        min-height: 250px;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    .monitoring-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-stats .col-auto {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Hero Shapes */
+.hero-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: floatShape 6s ease-in-out infinite;
+}
+
+.shape-1 {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.shape-2 {
+    width: 120px;
+    height: 120px;
+    top: 60%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.shape-3 {
+    width: 60px;
+    height: 60px;
+    top: 30%;
+    right: 30%;
+    animation-delay: 4s;
+}
+
+.shape-4 {
+    width: 100px;
+    height: 100px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 1s;
+}
+
+@keyframes floatShape {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 1;
+    }
+}
+
+/* Metric Glow Effects */
+.metric-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.metric-card:hover .metric-glow {
+    opacity: 1;
+}
+
+/* Metric Pulse Effects */
+.metric-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: metricPulse 2s ease-in-out infinite;
+}
+
+@keyframes metricPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+    }
+}
+
+/* Hero Badge */
+.hero-badge {
+    animation: bounceIn 1s ease-out;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Enhanced Card Headers */
+.card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none !important;
+    border-radius: 1rem 1rem 0 0 !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+/* Enhanced Market Section Styles */
+.bg-gradient-market {
+    background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%);
+    animation: marketGradient 8s ease-in-out infinite;
+}
+
+@keyframes marketGradient {
+    0%, 100% { background: linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 50%, #45B7D1 100%); }
+    50% { background: linear-gradient(135deg, #4ECDC4 0%, #45B7D1 50%, #FF6B6B 100%); }
+}
+
+.bg-gradient-alerts {
+    background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 50%, #FECFEF 100%);
+    animation: alertGradient 6s ease-in-out infinite;
+}
+
+@keyframes alertGradient {
+    0%, 100% { background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 50%, #FECFEF 100%); }
+    50% { background: linear-gradient(135deg, #FECFEF 0%, #FF9A9E 50%, #FF9A9E 100%); }
+}
+
+.bg-gradient-price-trend {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    animation: priceTrendGradient 7s ease-in-out infinite;
+}
+
+@keyframes priceTrendGradient {
+    0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
+    50% { background: linear-gradient(135deg, #f093fb 0%, #667eea 50%, #764ba2 100%); }
+}
+
+.bg-gradient-market-share {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 50%, #f093fb 100%);
+    animation: marketShareGradient 9s ease-in-out infinite;
+}
+
+@keyframes marketShareGradient {
+    0%, 100% { background: linear-gradient(135deg, #11998e 0%, #38ef7d 50%, #f093fb 100%); }
+    50% { background: linear-gradient(135deg, #f093fb 0%, #11998e 50%, #38ef7d 100%); }
+}
+
+/* Price Summary Cards */
+.price-summary-card {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.price-summary-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.price-summary-card:hover::before {
+    opacity: 1;
+}
+
+.price-summary-card:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.bg-gradient-wheat {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+    color: white;
+}
+
+.bg-gradient-rice {
+    background: linear-gradient(135deg, #87CEEB 0%, #4682B4 50%, #1E90FF 100%);
+    color: white;
+}
+
+.bg-gradient-maize {
+    background: linear-gradient(135deg, #FFE135 0%, #FFD700 50%, #FFA500 100%);
+    color: white;
+}
+
+.bg-gradient-cotton {
+    background: linear-gradient(135deg, #F0F8FF 0%, #E6E6FA 50%, #DDA0DD 100%);
+    color: #333;
+}
+
+.price-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.8rem;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.price-summary-card:hover .price-icon {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.price-info {
+    flex: 1;
+}
+
+.price-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.price-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.price-change {
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.price-change.positive {
+    color: #4CAF50;
+}
+
+.price-change.negative {
+    color: #F44336;
+}
+
+/* Price Trend Indicators */
+.price-trends {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.trend-indicator {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.trend-indicator:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.trend-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+    font-size: 1.2rem;
+    color: white;
+}
+
+.trend-text {
+    flex: 1;
+}
+
+.trend-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-bottom: 0.25rem;
+}
+
+.trend-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Enhanced Alert Items */
+.alert-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.alert-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.alert-item:hover::before {
+    width: 8px;
+}
+
+.alert-price-up {
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%);
+    border-left: 4px solid #4CAF50;
+}
+
+.alert-price-up::before {
+    background: #4CAF50;
+}
+
+.alert-weather {
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(33, 150, 243, 0.05) 100%);
+    border-left: 4px solid #2196F3;
+}
+
+.alert-weather::before {
+    background: #2196F3;
+}
+
+.alert-opportunity {
+    background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(255, 193, 7, 0.05) 100%);
+    border-left: 4px solid #FFC107;
+}
+
+.alert-opportunity::before {
+    background: #FFC107;
+}
+
+.alert-risk {
+    background: linear-gradient(135deg, rgba(244, 67, 54, 0.1) 0%, rgba(244, 67, 54, 0.05) 100%);
+    border-left: 4px solid #F44336;
+}
+
+.alert-risk::before {
+    background: #F44336;
+}
+
+.alert-market {
+    background: linear-gradient(135deg, rgba(156, 39, 176, 0.1) 0%, rgba(156, 39, 176, 0.05) 100%);
+    border-left: 4px solid #9C27B0;
+}
+
+.alert-market::before {
+    background: #9C27B0;
+}
+
+.alert-item:hover {
+    transform: translateX(8px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.alert-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.alert-item:hover .alert-icon {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.alert-content {
+    flex: 1;
+}
+
+.alert-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #333;
+}
+
+.alert-message {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+    line-height: 1.4;
+}
+
+.alert-time {
+    font-size: 0.8rem;
+    color: #999;
+    font-style: italic;
+}
+
+/* Market Sentiment */
+.market-sentiment {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.sentiment-title {
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.sentiment-meter {
+    position: relative;
+}
+
+.sentiment-bar {
+    width: 100%;
+    height: 12px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.sentiment-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50 0%, #8BC34A 50%, #CDDC39 100%);
+    border-radius: 6px;
+    transition: width 0.8s ease;
+    position: relative;
+}
+
+.sentiment-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: sentimentShimmer 2s infinite;
+}
+
+@keyframes sentimentShimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.sentiment-label {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Market Controls */
+.market-controls, .alert-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.market-controls button, .alert-controls button {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.market-controls button:hover, .alert-controls button:hover {
+    transform: rotate(180deg) scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced Yield Prediction Styles */
+.bg-gradient-yield {
+    background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 50%, #CDDC39 100%);
+    animation: yieldGradient 6s ease-in-out infinite;
+}
+
+@keyframes yieldGradient {
+    0%, 100% { background: linear-gradient(135deg, #4CAF50 0%, #8BC34A 50%, #CDDC39 100%); }
+    50% { background: linear-gradient(135deg, #CDDC39 0%, #4CAF50 50%, #8BC34A 100%); }
+}
+
+.yield-prediction-summary {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.yield-prediction-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.yield-prediction-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.prediction-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.prediction-content {
+    flex: 1;
+}
+
+.prediction-label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 0.25rem;
+    color: white;
+}
+
+.prediction-value {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.yield-chart-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.yield-analysis {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.analysis-title {
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.yield-crop-analysis {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.crop-yield-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.crop-yield-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateX(5px);
+}
+
+.crop-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.crop-icon {
+    font-size: 2rem;
+}
+
+.crop-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.crop-name {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.crop-yield {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #666;
+}
+
+.yield-progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 150px;
+}
+
+.progress {
+    flex: 1;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.8s ease;
+}
+
+.yield-percentage {
+    font-weight: 600;
+    color: #333;
+    min-width: 40px;
+    text-align: right;
+}
+
+.yield-summary-stats {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.yield-stat-card {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.yield-stat-card:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.yield-stat-card .stat-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+    font-size: 1rem;
+    color: white;
+}
+
+.yield-stat-card .stat-content {
+    flex: 1;
+}
+
+.yield-stat-card .stat-value {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.yield-stat-card .stat-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* Enhanced Price Chart Styles */
+.price-chart-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.price-comparison-table {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.table-title {
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.price-table {
+    background: transparent;
+    border: none;
+}
+
+.price-table thead th {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #333;
+    font-weight: 600;
+    padding: 1rem 0.75rem;
+}
+
+.price-table tbody tr {
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.price-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.price-table tbody td {
+    border: none;
+    padding: 1rem 0.75rem;
+    vertical-align: middle;
+}
+
+.crop-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.crop-emoji {
+    font-size: 1.5rem;
+}
+
+.crop-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.price-current {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.price-previous {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.price-change.positive {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+.price-change.negative {
+    color: #F44336;
+    font-weight: 600;
+}
+
+/* Responsive Design for Market Section */
+@media (max-width: 768px) {
+    .price-summary-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .price-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .price-value {
+        font-size: 1.3rem;
+    }
+    
+    .trend-indicator {
+        padding: 0.5rem;
+    }
+    
+    .trend-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .alert-item {
+        padding: 0.75rem;
+    }
+    
+    .alert-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .yield-prediction-item {
+        padding: 0.75rem;
+    }
+    
+    .prediction-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+    
+    .prediction-value {
+        font-size: 1.1rem;
+    }
+    
+    .crop-yield-item {
+        padding: 0.75rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+    
+    .yield-progress {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .yield-stat-card {
+        padding: 0.5rem;
+    }
+    
+    .yield-stat-card .stat-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+    
+    .price-table {
+        font-size: 0.9rem;
+    }
+    
+    .price-table thead th,
+    .price-table tbody td {
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+/* Background Images and Enhanced Styling */
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-image: 
+        linear-gradient(135deg, rgba(102, 126, 234, 0.7) 0%, rgba(118, 75, 162, 0.7) 100%),
+        url('assets/images/farm landscape.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Fallback background if image doesn't load */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    z-index: -2;
+}
+
+/* Additional Gradient Headers */
+.bg-gradient-info {
+    background: linear-gradient(135deg, #17a2b8 0%, #138496 50%, #0c5460 100%);
+    animation: infoGradient 7s ease-in-out infinite;
+}
+
+@keyframes infoGradient {
+    0%, 100% { background: linear-gradient(135deg, #17a2b8 0%, #138496 50%, #0c5460 100%); }
+    50% { background: linear-gradient(135deg, #0c5460 0%, #17a2b8 50%, #138496 100%); }
+}
+
+.bg-gradient-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 50%, #d39e00 100%);
+    animation: warningGradient 6s ease-in-out infinite;
+}
+
+@keyframes warningGradient {
+    0%, 100% { background: linear-gradient(135deg, #ffc107 0%, #e0a800 50%, #d39e00 100%); }
+    50% { background: linear-gradient(135deg, #d39e00 0%, #ffc107 50%, #e0a800 100%); }
+}
+
+.bg-gradient-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 50%, #17a2b8 100%);
+    animation: successGradient 8s ease-in-out infinite;
+}
+
+@keyframes successGradient {
+    0%, 100% { background: linear-gradient(135deg, #28a745 0%, #20c997 50%, #17a2b8 100%); }
+    50% { background: linear-gradient(135deg, #17a2b8 0%, #28a745 50%, #20c997 100%); }
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 50%, #004085 100%);
+    animation: primaryGradient 9s ease-in-out infinite;
+}
+
+@keyframes primaryGradient {
+    0%, 100% { background: linear-gradient(135deg, #007bff 0%, #0056b3 50%, #004085 100%); }
+    50% { background: linear-gradient(135deg, #004085 0%, #007bff 50%, #0056b3 100%); }
+}
+
+.bg-gradient-danger {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 50%, #bd2130 100%);
+    animation: dangerGradient 7s ease-in-out infinite;
+}
+
+@keyframes dangerGradient {
+    0%, 100% { background: linear-gradient(135deg, #dc3545 0%, #c82333 50%, #bd2130 100%); }
+    50% { background: linear-gradient(135deg, #bd2130 0%, #dc3545 50%, #c82333 100%); }
+}
+
+/* New Section Styles */
+.production-stats, .weather-stats, .profit-stats, .regional-stats, .risk-stats {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1rem;
+    padding: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.stat-item, .weather-stat, .profit-item, .region-item, .risk-item {
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.stat-item:hover, .weather-stat:hover, .profit-item:hover, .region-item:hover, .risk-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.stat-value, .weather-value, .profit-value, .region-yield, .risk-value {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label, .weather-label, .profit-label, .region-name, .risk-label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    color: #333;
+}
+
+.weather-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.region-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+.region-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.region-yield {
+    font-weight: bold;
+    color: #666;
+}
+
+.risk-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: left;
+}
+
+.risk-icon {
+    font-size: 1.2rem;
+}
+
+.risk-content {
+    flex: 1;
+}
+
+.risk-item.low-risk {
+    border-left: 4px solid #28a745;
+}
+
+.risk-item.medium-risk {
+    border-left: 4px solid #ffc107;
+}
+
+.risk-item.high-risk {
+    border-left: 4px solid #dc3545;
+}
+
+/* Card Enhancements */
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Specific Background Images for Different Sections */
+.yield-prediction-card {
+    background-image: 
+        linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%),
+        url('assets/images/wheat field.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.market-card {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 107, 107, 0.05) 100%),
+        url('assets/images/rice field.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.alerts-card {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 154, 158, 0.1) 0%, rgba(255, 154, 158, 0.05) 100%),
+        url('assets/images/green field.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+/* Weather and Analytics Cards */
+.card:nth-child(1) {
+    background-image: 
+        linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(33, 150, 243, 0.05) 100%),
+        url('assets/images/modern farm.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.card:nth-child(2) {
+    background-image: 
+        linear-gradient(135deg, rgba(76, 175, 80, 0.1) 0%, rgba(76, 175, 80, 0.05) 100%),
+        url('assets/images/harvest.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+/* Enhanced Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate__animated {
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+}
+
+.animate__fadeInUp {
+    animation-name: fadeInUp;
+}
+
+/* Staggered Animation Delays */
+.animate__animated:nth-child(1) { animation-delay: 0.1s; }
+.animate__animated:nth-child(2) { animation-delay: 0.2s; }
+.animate__animated:nth-child(3) { animation-delay: 0.3s; }
+.animate__animated:nth-child(4) { animation-delay: 0.4s; }
+.animate__animated:nth-child(5) { animation-delay: 0.5s; }
+.animate__animated:nth-child(6) { animation-delay: 0.6s; }
+
+/* Loading States */
+.loading-shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+    .container-fluid {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .chart-container {
+        height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .stat-item, .weather-stat, .profit-item, .region-item, .risk-item {
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-value, .weather-value, .profit-value, .region-yield, .risk-value {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .container-fluid {
+        padding: 0.5rem;
+    }
+    
+    .card-body {
+        padding: 0.75rem;
+    }
+    
+    .chart-container {
+        height: 150px;
+    }
+}
+</style>
+</html>

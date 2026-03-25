@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en" id="html-root">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title data-i18n="help.title">Help - Agricultural Climate Risk Prediction</title>
+    <meta name="description" data-i18n="help.description" content="Get help and support for using the agricultural climate risk prediction system">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold animate__animated animate__fadeInLeft" href="index.html">
+                <i class="bi bi-cloud-sun-fill me-2"></i>
+                <span data-i18n="nav.brand">कृषि जोखिम भविष्यवाणी | Agricultural Risk Prediction</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" data-i18n="nav.home">होम | Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html" data-i18n="nav.about">के बारे में | About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="help.html" data-i18n="nav.help">सहायता | Help</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-translate me-1"></i>
+                            <span data-i18n="nav.language">भाषा | Language</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="hi">हिन्दी</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="mr">मराठी</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center mb-5 help-hero position-relative overflow-hidden">
+                    <div class="hero-slideshow">
+                        <div class="slide" style="background-image: url('assets/images/farm landscape.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/green field.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/harvest.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/modern farm.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/rice field.jpg');"></div>
+                        <div class="slide" style="background-image: url('assets/images/wheat field.jpg');"></div>
+                    </div>
+                    <div class="hero-content">
+                        <h1 class="display-4 fw-bold text-primary animate__animated animate__fadeInDown" data-i18n="help.main_title">
+                            सहायता और मार्गदर्शन | Help & Guidance
+                        </h1>
+                        <p class="lead text-muted animate__animated animate__fadeInUp" data-i18n="help.subtitle">
+                            एप्लिकेशन का उपयोग कैसे करें | How to use the application
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-5">
+            <div class="col-12 col-lg-8">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-body p-5">
+                        <h2 class="h3 mb-4" data-i18n="help.how_to_use">कैसे उपयोग करें | How to Use</h2>
+                        
+                        <div class="step-item mb-4">
+                            <div class="step-number bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center me-3">1</div>
+                            <div class="step-content">
+                                <h5 data-i18n="help.step1_title">जिल्हा चुनें | Select District</h5>
+                                <p data-i18n="help.step1_desc">ड्रॉपडाउन मेनू से अपना जिल्हा चुनें। यह आपके क्षेत्र के लिए विशिष्ट जानकारी प्रदर्शित करेगा।</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item mb-4">
+                            <div class="step-number bg-success text-white rounded-circle d-inline-flex align-items-center justify-content-center me-3">2</div>
+                            <div class="step-content">
+                                <h5 data-i18n="help.step2_title">फसल जोखिम देखें | View Crop Risks</h5>
+                                <p data-i18n="help.step2_desc">तालिका में विभिन्न फसलों के लिए जोखिम स्तर और सुझाव देखें। रंग-कोडिंग से जोखिम स्तर समझें।</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item mb-4">
+                            <div class="step-number bg-info text-white rounded-circle d-inline-flex align-items-center justify-content-center me-3">3</div>
+                            <div class="step-content">
+                                <h5 data-i18n="help.step3_title">आवाज सुने | Listen to Voice</h5>
+                                <p data-i18n="help.step3_desc">प्रत्येक फसल के लिए आवाज बटन पर क्लिक करें या सारांश सुनने के लिए 'सारांश सुनाएं' बटन का उपयोग करें।</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item mb-4">
+                            <div class="step-number bg-warning text-white rounded-circle d-inline-flex align-items-center justify-content-center me-3">4</div>
+                            <div class="step-content">
+                                <h5 data-i18n="help.step4_title">नक्शा देखें | View Map</h5>
+                                <p data-i18n="help.step4_desc">नक्शे पर जिल्हों को देखें और उनके जोखिम स्तर को समझें। नक्शे पर क्लिक करके जिल्हा चुन सकते हैं।</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item mb-4">
+                            <div class="step-number bg-danger text-white rounded-circle d-inline-flex align-items-center justify-content-center me-3">5</div>
+                            <div class="step-content">
+                                <h5 data-i18n="help.step5_title">मौसम जानकारी | Weather Information</h5>
+                                <p data-i18n="help.step5_desc">वास्तविक समय मौसम डेटा देखें और फसल कैलेंडर तथा मिट्टी की जानकारी प्राप्त करें।</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-lg border-0 mt-4 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-success text-white">
+                        <h4 class="mb-0" data-i18n="help.risk_levels">जोखिम स्तर | Risk Levels</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="risk-level-card text-center p-3 border rounded">
+                                    <div class="badge-risk risk-low mb-2">Safe</div>
+                                    <h6 data-i18n="help.low_risk">कम जोखिम | Low Risk</h6>
+                                    <p class="small text-muted" data-i18n="help.low_risk_desc">फसल के लिए अनुकूल परिस्थितियां</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="risk-level-card text-center p-3 border rounded">
+                                    <div class="badge-risk risk-medium mb-2">Caution</div>
+                                    <h6 data-i18n="help.medium_risk">मध्यम जोखिम | Medium Risk</h6>
+                                    <p class="small text-muted" data-i18n="help.medium_risk_desc">सावधानी बरतने की आवश्यकता</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="risk-level-card text-center p-3 border rounded">
+                                    <div class="badge-risk risk-high mb-2">Avoid</div>
+                                    <h6 data-i18n="help.high_risk">उच्च जोखिम | High Risk</h6>
+                                    <p class="small text-muted" data-i18n="help.high_risk_desc">फसल के लिए अनुकूल नहीं</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-info text-white">
+                        <h4 class="mb-0" data-i18n="help.faq">अक्सर पूछे जाने वाले प्रश्न | FAQ</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                        <span data-i18n="help.faq1_q">डेटा कितना सटीक है? | How accurate is the data?</span>
+                                    </button>
+                                </h2>
+                                <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <small data-i18n="help.faq1_a">यह एक प्रोटोटाइप है जो डमी डेटा का उपयोग करता है। वास्तविक उपयोग के लिए सटीक मौसम और कृषि डेटा की आवश्यकता होगी।</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                        <span data-i18n="help.faq2_q">क्या यह मोबाइल पर काम करता है? | Does it work on mobile?</span>
+                                    </button>
+                                </h2>
+                                <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <small data-i18n="help.faq2_a">हां, यह एप्लिकेशन मोबाइल-फ्रेंडली है और सभी डिवाइस पर काम करता है।</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                        <span data-i18n="help.faq3_q">आवाज कैसे काम करती है? | How does voice work?</span>
+                                    </button>
+                                </h2>
+                                <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <small data-i18n="help.faq3_a">यह वेब स्पीच API का उपयोग करता है। ब्राउज़र की आवाज़ सुविधा पर निर्भर करता है।</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-lg border-0 mt-4 animate__animated animate__fadeInUp">
+                    <div class="card-header bg-gradient-warning text-dark">
+                        <h4 class="mb-0" data-i18n="help.tips">सुझाव | Tips</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <i class="bi bi-lightbulb text-warning me-2"></i>
+                                <small data-i18n="help.tip1">नियमित रूप से जोखिम स्तर की जांच करें</small>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-lightbulb text-warning me-2"></i>
+                                <small data-i18n="help.tip2">मौसम की जानकारी को ध्यान में रखें</small>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-lightbulb text-warning me-2"></i>
+                                <small data-i18n="help.tip3">फसल कैलेंडर का पालन करें</small>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-lightbulb text-warning me-2"></i>
+                                <small data-i18n="help.tip4">मिट्टी की जानकारी का उपयोग करें</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 data-i18n="footer.title">कृषि जोखिम भविष्यवाणी | Agricultural Risk Prediction</h5>
+                    <p class="mb-0" data-i18n="footer.description">किसानों के लिए स्मार्ट कृषि समाधान | Smart agricultural solutions for farmers</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0" data-i18n="footer.copyright">© 2024 कृषि टेक | Agri Tech. सभी अधिकार सुरक्षित | All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <!-- App Scripts -->
+    <script src="assets/js/i18n.js"></script>
+</body>
+<style>
+.step-item {
+    display: flex;
+    align-items: flex-start;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.risk-level-card {
+    transition: transform 0.3s ease;
+}
+
+.risk-level-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* Help Page Background & Slideshow */
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+.help-hero {
+    background: transparent;
+    border-radius: 1rem;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.help-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.55) 0%, rgba(118, 75, 162, 0.55) 50%, rgba(240, 147, 251, 0.45) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-slideshow .slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    will-change: opacity, transform;
+    animation: slideShow 36s infinite ease-in-out;
+}
+
+.hero-slideshow .slide:nth-child(1) { animation-delay: 0s; }
+.hero-slideshow .slide:nth-child(2) { animation-delay: 6s; }
+.hero-slideshow .slide:nth-child(3) { animation-delay: 12s; }
+.hero-slideshow .slide:nth-child(4) { animation-delay: 18s; }
+.hero-slideshow .slide:nth-child(5) { animation-delay: 24s; }
+.hero-slideshow .slide:nth-child(6) { animation-delay: 30s; }
+
+@keyframes slideShow {
+    0% { opacity: 0; transform: scale(1); }
+    4% { opacity: 1; }
+    16% { opacity: 1; transform: scale(1.05); }
+    20% { opacity: 0; transform: scale(1.08); }
+    100% { opacity: 0; }
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.card:nth-child(1) {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%),
+        url('assets/images/wheat field.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.card:nth-child(2) {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%),
+        url('assets/images/rice field.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.card:nth-child(3) {
+    background-image: 
+        linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.8) 100%),
+        url('assets/images/modern farm.jpg');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.98);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .help-hero { padding: 2rem 1rem; }
+}
+</style>
+</html>

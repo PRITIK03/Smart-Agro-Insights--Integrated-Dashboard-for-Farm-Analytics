@@ -1,0 +1,866 @@
+/* Enhanced styles for agricultural app */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Hero Section with Slideshow */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.hero-slideshow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  animation: fade 20s infinite;
+}
+
+.slide:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.slide:nth-child(2) {
+  animation-delay: 5s;
+}
+
+.slide:nth-child(3) {
+  animation-delay: 10s;
+}
+
+.slide:nth-child(4) {
+  animation-delay: 15s;
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  25% { opacity: 1; }
+  35% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn-gradient-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(0,0,0,0.15);
+  color: white;
+}
+
+.btn-outline-light {
+  border: 2px solid white;
+  color: white;
+  background: transparent;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.card {
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+/* Mini stats with gradients */
+.mini-stat {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.mini-stat:hover {
+  transform: scale(1.05);
+}
+
+.mini-stat .label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.mini-stat .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Risk badges with animations */
+.badge-risk {
+  padding: 0.6rem 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: pulse 2s infinite;
+}
+
+.risk-low {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: white;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.risk-medium {
+  background: linear-gradient(135deg, #ff9800, #ffb74d);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+}
+
+.risk-high {
+  background: linear-gradient(135deg, #f44336, #ef5350);
+  color: white;
+  box-shadow: 0 4px 15px rgba(244, 67, 54, 0.3);
+}
+
+/* Table enhancements */
+table#riskTable td, table#riskTable th {
+  vertical-align: middle;
+  padding: 1rem 0.75rem;
+}
+
+table#riskTable tbody tr {
+  transition: background-color 0.3s ease;
+}
+
+table#riskTable tbody tr:hover {
+  background-color: rgba(0,123,255,0.05);
+}
+
+/* Voice buttons */
+.btn-voice {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.btn-voice:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Map customizations */
+.custom-div-icon {
+  background: transparent;
+  border: none;
+}
+
+/* Crop calendar styles */
+.calendar-month {
+  background: #f8f9fa;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.calendar-month:hover {
+  background: #e9ecef;
+  transform: translateY(-2px);
+}
+
+.calendar-month.current-month {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-color: #667eea;
+}
+
+.month-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.crop-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  justify-content: center;
+}
+
+.crop-indicator {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 1rem;
+  background: rgba(255,255,255,0.2);
+  color: inherit;
+}
+
+.crop-indicator.low {
+  background: rgba(76, 175, 80, 0.2);
+  color: #2e7d32;
+}
+
+.crop-indicator.medium {
+  background: rgba(255, 152, 0, 0.2);
+  color: #ef6c00;
+}
+
+.crop-indicator.high {
+  background: rgba(244, 67, 54, 0.2);
+  color: #c62828;
+}
+
+/* Soil info styles */
+.soil-card {
+  background: #f8f9fa;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  border-left: 4px solid #007bff;
+  transition: all 0.3s ease;
+}
+
+.soil-card:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+.soil-card h6 {
+  color: #495057;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.bg-gradient-info {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.bg-gradient-warning {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.bg-gradient-danger {
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+}
+
+.bg-gradient-secondary {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+}
+
+/* Animations */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Responsive design */
+@media (max-width: 575.98px) {
+  #map {
+    height: 300px;
+  }
+  
+  .mini-stat {
+    padding: 1rem;
+  }
+  
+  .mini-stat .value {
+    font-size: 1.25rem;
+  }
+  
+  .calendar-month {
+    padding: 0.5rem;
+  }
+  
+  .crop-indicator {
+    font-size: 0.6rem;
+    padding: 0.15rem 0.3rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .card-body {
+    padding: 1rem;
+  }
+  
+  .table-responsive {
+    font-size: 0.9rem;
+  }
+}
+
+/* Loading states */
+.spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+}
+
+/* Enhanced Card Animations */
+.card {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Advanced Button Styles */
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+/* Enhanced Form Controls */
+.form-control, .form-select {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Loading Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Advanced Hover Effects */
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Enhanced Typography */
+.display-1, .display-2, .display-3, .display-4, .display-5 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+}
+
+/* Advanced Grid System */
+.grid-gap-5 {
+  gap: 3rem;
+}
+
+.grid-gap-4 {
+  gap: 2.5rem;
+}
+
+.grid-gap-3 {
+  gap: 2rem;
+}
+
+/* Enhanced Shadows */
+.shadow-soft {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-medium {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.shadow-strong {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Advanced Border Radius */
+.rounded-xl {
+  border-radius: 1.5rem;
+}
+
+.rounded-2xl {
+  border-radius: 2rem;
+}
+
+.rounded-3xl {
+  border-radius: 2.5rem;
+}
+
+/* Enhanced Spacing */
+.py-6 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.py-7 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.my-6 {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.my-7 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+/* Advanced Color Utilities */
+.text-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-light {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+}
+
+/* Enhanced Focus States */
+.focus-ring {
+  transition: all 0.3s ease;
+}
+
+.focus-ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+  transform: scale(1.05);
+}
+
+/* Advanced Transitions */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.transition-transform {
+  transition: transform 0.3s ease;
+}
+
+.transition-colors {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .display-1 { font-size: 3rem; }
+  .display-2 { font-size: 2.5rem; }
+  .display-3 { font-size: 2rem; }
+  .display-4 { font-size: 1.75rem; }
+  .display-5 { font-size: 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  .py-6 { padding-top: 2rem; padding-bottom: 2rem; }
+  .py-7 { padding-top: 3rem; padding-bottom: 3rem; }
+  .my-6 { margin-top: 2rem; margin-bottom: 2rem; }
+  .my-7 { margin-top: 3rem; margin-bottom: 3rem; }
+}
+
+/* Analytics Card Styles */
+.analytics-card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.analytics-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.analytics-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.analytics-stats {
+  margin-top: 1rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+/* Weather Stats */
+.weather-stat {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.weather-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.weather-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.weather-label {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+/* Production Stats */
+.production-stats .stat-item {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+/* Profit Stats */
+.profit-item {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.profit-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: block;
+}
+
+.profit-label {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-top: 0.25rem;
+}
+
+/* Regional Stats */
+.region-item {
+  text-align: center;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.region-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.region-yield {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* Risk Stats */
+.risk-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.risk-icon {
+  font-size: 1.2rem;
+  margin-right: 0.75rem;
+}
+
+.risk-content {
+  flex: 1;
+}
+
+.risk-label {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.risk-value {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.risk-item.low-risk .risk-value {
+  color: #28a745;
+}
+
+.risk-item.medium-risk .risk-value {
+  color: #ffc107;
+}
+
+.risk-item.high-risk .risk-value {
+  color: #dc3545;
+}
+
+/* Analytics Charts Height Fix */
+.analytics-chart-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+.analytics-chart-container canvas {
+  max-height: 300px !important;
+  width: 100% !important;
+}
+
+/* Ensure all chart canvases have proper height */
+#priceTrendChart,
+#marketShareChart,
+#cropProductionChart,
+#weatherAnalysisChart,
+#profitAnalysisChart,
+#regionalAnalysisChart,
+#riskAssessmentChart {
+  max-height: 300px !important;
+  height: 300px !important;
+  width: 100% !important;
+}
+
+/* Chart container styling */
+.card-body {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Prevent chart stretching */
+.analytics-chart-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.analytics-chart-container canvas {
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+  
+  .btn {
+    border: 1px solid #333;
+    background: transparent !important;
+    color: #333 !important;
+  }
+}
+
+
