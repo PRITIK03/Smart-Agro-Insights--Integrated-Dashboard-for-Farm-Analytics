@@ -1,3 +1,29 @@
+// Load districts data from frontend assets (for demo, require JSON or JS file)
+const path = require('path');
+const fs = require('fs');
+
+// Helper to load DISTRICTS from assets/js/data.js
+function getDistricts() {
+  // This assumes data.js exports window.DISTRICTS = [...];
+  // We'll read and parse the file for the array.
+  const dataPath = path.join(__dirname, '../assets/js/data.js');
+  const file = fs.readFileSync(dataPath, 'utf-8');
+  const match = file.match(/window\.DISTRICTS\s*=\s*(\[.*?\]);/s);
+  if (match) {
+    return JSON.parse(match[1]);
+  }
+  return [];
+}
+
+// GET /api/districts
+app.get('/api/districts', (req, res) => {
+  try {
+    const districts = getDistricts();
+    res.json(districts);
+  } catch (e) {
+    res.status(500).json({ error: 'Failed to load districts', details: e.message });
+  }
+});
 // Basic Express server for Smart Agro Insights
 const express = require('express');
 const cors = require('cors');
