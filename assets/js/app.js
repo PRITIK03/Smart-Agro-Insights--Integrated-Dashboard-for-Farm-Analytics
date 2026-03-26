@@ -245,17 +245,17 @@ function initSlideshow() {
       setWeatherDummy()
       return
     }
-    
     try{
-      const url = `https://api.openweathermap.org/data/2.5/weather?lat=${dObj.lat}&lon=${dObj.lon}&appid=${WEATHER_API_KEY}&units=metric`
+      // Fetch from backend instead of directly from OpenWeather
+      const url = `/api/weather?lat=${dObj.lat}&lon=${dObj.lon}`
       const res = await fetch(url)
       if(!res.ok) throw new Error('Weather fetch failed')
       const data = await res.json()
       renderWeather({
-        temp: Math.round(data.main?.temp ?? 28),
-        humidity: Math.round(data.main?.humidity ?? 60),
-        rain: Math.round((data.rain?.['1h'] ?? data.clouds?.all ?? 0) * 100)/100,
-        wind: Math.round(data.wind?.speed ?? 2)
+        temp: data.temp,
+        humidity: data.humidity,
+        rain: data.rain,
+        wind: data.wind
       })
     }catch(e){
       console.log('Using fallback weather data:', e.message)
