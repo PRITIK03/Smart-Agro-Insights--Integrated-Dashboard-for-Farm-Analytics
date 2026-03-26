@@ -1,3 +1,30 @@
+// GET /api/soil-info?districtId=xxx
+app.get('/api/soil-info', (req, res) => {
+  const { districtId } = req.query;
+  if (!districtId) {
+    return res.status(400).json({ error: 'districtId is required' });
+  }
+  try {
+    const districts = getDistricts();
+    const dObj = districts.find(d => d.id === districtId);
+    if (!dObj) {
+      return res.status(404).json({ error: 'District not found' });
+    }
+    const soilTypes = {
+      'Maharashtra': { type: 'Black Soil', ph: '7.2-8.5', nutrients: 'High in Calcium, Magnesium' },
+      'Haryana': { type: 'Alluvial Soil', ph: '6.5-7.5', nutrients: 'Rich in Potash, Phosphorous' },
+      'Punjab': { type: 'Alluvial Soil', ph: '6.8-7.8', nutrients: 'High in Organic Matter' },
+      'Madhya Pradesh': { type: 'Black Soil', ph: '7.0-8.5', nutrients: 'High in Iron, Aluminium' },
+      'Chhattisgarh': { type: 'Red Soil', ph: '6.0-7.5', nutrients: 'Rich in Iron Oxide' },
+      'Odisha': { type: 'Laterite Soil', ph: '5.5-7.0', nutrients: 'High in Iron, Aluminium' },
+      'Jharkhand': { type: 'Red Soil', ph: '6.0-7.0', nutrients: 'Rich in Iron, Phosphorous' }
+    };
+    const soil = soilTypes[dObj.state] || { type: 'Mixed Soil', ph: '6.5-7.5', nutrients: 'Balanced' };
+    res.json(soil);
+  } catch (e) {
+    res.status(500).json({ error: 'Failed to load soil info', details: e.message });
+  }
+});
 // Helper to load CROP_RISKS from assets/js/data.js
 function getCropRisks() {
   const dataPath = path.join(__dirname, '../assets/js/data.js');
