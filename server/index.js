@@ -1,3 +1,28 @@
+// Helper to load CROP_RISKS from assets/js/data.js
+function getCropRisks() {
+  const dataPath = path.join(__dirname, '../assets/js/data.js');
+  const file = fs.readFileSync(dataPath, 'utf-8');
+  const match = file.match(/window\.CROP_RISKS\s*=\s*({[\s\S]*?});/);
+  if (match) {
+    return JSON.parse(match[1]);
+  }
+  return {};
+}
+
+// GET /api/crop-risks?districtId=xxx
+app.get('/api/crop-risks', (req, res) => {
+  const { districtId } = req.query;
+  if (!districtId) {
+    return res.status(400).json({ error: 'districtId is required' });
+  }
+  try {
+    const cropRisks = getCropRisks();
+    const risks = cropRisks[districtId] || [];
+    res.json(risks);
+  } catch (e) {
+    res.status(500).json({ error: 'Failed to load crop risks', details: e.message });
+  }
+});
 // Load districts data from frontend assets (for demo, require JSON or JS file)
 const path = require('path');
 const fs = require('fs');
