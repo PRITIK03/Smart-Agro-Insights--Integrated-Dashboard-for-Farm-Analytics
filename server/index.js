@@ -1,3 +1,36 @@
+// GET /api/crop-calendar?districtId=xxx&month=xx
+app.get('/api/crop-calendar', (req, res) => {
+  const { districtId, month } = req.query;
+  if (!districtId) {
+    return res.status(400).json({ error: 'districtId is required' });
+  }
+  try {
+    // For now, month is optional; if not provided, return all months
+    // Use the same mapping as frontend
+    const seasonalCrops = {
+      0: [{ name: 'Wheat', risk: 'low' }, { name: 'Mustard', risk: 'medium' }], // Jan
+      1: [{ name: 'Wheat', risk: 'low' }, { name: 'Potato', risk: 'low' }], // Feb
+      2: [{ name: 'Wheat', risk: 'low' }, { name: 'Onion', risk: 'low' }], // Mar
+      3: [{ name: 'Rice', risk: 'medium' }, { name: 'Maize', risk: 'low' }], // Apr
+      4: [{ name: 'Rice', risk: 'medium' }, { name: 'Sugarcane', risk: 'low' }], // May
+      5: [{ name: 'Rice', risk: 'high' }, { name: 'Cotton', risk: 'high' }], // Jun
+      6: [{ name: 'Rice', risk: 'high' }, { name: 'Cotton', risk: 'high' }], // Jul
+      7: [{ name: 'Rice', risk: 'high' }, { name: 'Soybean', risk: 'high' }], // Aug
+      8: [{ name: 'Rice', risk: 'medium' }, { name: 'Soybean', risk: 'medium' }], // Sep
+      9: [{ name: 'Wheat', risk: 'low' }, { name: 'Mustard', risk: 'low' }], // Oct
+      10: [{ name: 'Wheat', risk: 'low' }, { name: 'Potato', risk: 'low' }], // Nov
+      11: [{ name: 'Wheat', risk: 'low' }, { name: 'Mustard', risk: 'low' }] // Dec
+    };
+    if (month !== undefined) {
+      const m = parseInt(month, 10);
+      return res.json(seasonalCrops[m] || []);
+    }
+    // Return all months if month param not provided
+    res.json(seasonalCrops);
+  } catch (e) {
+    res.status(500).json({ error: 'Failed to load crop calendar', details: e.message });
+  }
+});
 // GET /api/soil-info?districtId=xxx
 app.get('/api/soil-info', (req, res) => {
   const { districtId } = req.query;
