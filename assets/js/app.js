@@ -47,8 +47,62 @@ function initSlideshow() {
     wind: document.getElementById('windValue')
   }
 
+
   // Free OpenWeather API key (demo purposes)
   const WEATHER_API_KEY = 'b6907d289e10d714a6e88b30761fae22'
+
+  // --- Micro Weather Trend Chart ---
+  async function loadWeatherHistory(districtId) {
+    const dObj = window.DISTRICTS.find(d => d.id === districtId)
+    if (!dObj) {
+      renderMiniWeatherChart([28, 29, 30, 29, 28, 27, 28]) // fallback
+      return
+    }
+    try {
+      const url = `/api/weather-history?lat=${dObj.lat}&lon=${dObj.lon}`
+      const res = await fetch(url)
+      if (!res.ok) throw new Error('Weather history fetch failed')
+      const data = await res.json()
+      // Assume data.temps is an array of 7 numbers
+      renderMiniWeatherChart(data.temps)
+    } catch (e) {
+      console.log('Mini weather chart fallback:', e.message)
+      renderMiniWeatherChart([28, 29, 30, 29, 28, 27, 28])
+    }
+  }
+
+  let miniWeatherChartInstance = null
+  function renderMiniWeatherChart(temps) {
+    const ctx = document.getElementById('miniWeatherChart')
+    if (!ctx) return
+    if (miniWeatherChartInstance) {
+      miniWeatherChartInstance.destroy()
+    }
+    miniWeatherChartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: temps.map((_, i) => `D${i+1}`),
+        datasets: [{
+          data: temps,
+          borderColor: '#fff',
+          backgroundColor: 'rgba(255,255,255,0.15)',
+          pointRadius: 0,
+          tension: 0.5,
+          fill: true,
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { display: false },
+          y: { display: false }
+        },
+        elements: { line: { borderWidth: 2 } },
+        responsive: false,
+        maintainAspectRatio: false,
+      }
+    })
+  }
 
   // Populate districts with state information
   window.DISTRICTS.forEach(d => {
@@ -293,6 +347,7 @@ function initSlideshow() {
       map.setView([dObj.lat, dObj.lon], 8)
     }
     loadWeather(id)
+    loadWeatherHistory(id) // Load micro weather trend chart
     loadCropCalendar(id)
     loadSoilInfo(id)
   }
@@ -424,6 +479,8 @@ function initSlideshow() {
   setWeatherDummy()
   loadCropCalendar()
   loadSoilInfo()
+  // Load micro weather chart with fallback data on first load
+  renderMiniWeatherChart([28, 29, 30, 29, 28, 27, 28])
 })()
 
 
