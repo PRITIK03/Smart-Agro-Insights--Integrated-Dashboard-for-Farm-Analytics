@@ -129,6 +129,34 @@ app.get('/api/health', (req, res) => {
 const axios = require('axios');
 const WEATHER_API_KEY = 'b6907d289e10d714a6e88b30761fae22'; // Demo key, replace with your own for production
 
+// GET /api/weather-history?lat=...&lon=...
+// Returns last 7 days of temperature and rainfall (mocked if no paid API)
+app.get('/api/weather-history', async (req, res) => {
+  const { lat, lon } = req.query;
+  if (!lat || !lon) {
+    return res.status(400).json({ error: 'lat and lon are required' });
+  }
+  try {
+    // OpenWeatherMap One Call historical API requires paid plan, so we mock for demo
+    // In production, replace this with real API call
+    const now = Date.now();
+    const days = 7;
+    const history = [];
+    for (let i = days - 1; i >= 0; i--) {
+      const date = new Date(now - i * 24 * 60 * 60 * 1000);
+      // Generate mock data with some variation
+      history.push({
+        date: date.toISOString().slice(0, 10),
+        temp: Math.round(24 + Math.sin(i) * 4 + Math.random() * 2),
+        rain: Math.round((Math.abs(Math.cos(i)) * 10 + Math.random() * 2) * 10) / 10
+      });
+    }
+    res.json(history);
+  } catch (e) {
+    res.status(500).json({ error: 'Failed to fetch weather history', details: e.message });
+  }
+});
+
 // GET /api/weather?lat=...&lon=...
 app.get('/api/weather', async (req, res) => {
   const { lat, lon } = req.query;
