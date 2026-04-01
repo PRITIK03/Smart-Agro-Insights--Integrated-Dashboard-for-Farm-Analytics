@@ -28,6 +28,12 @@ function initializeDashboard() {
         initializeProductivityChart();
         console.log('Productivity chart initialized');
     } catch (e) { console.error('Error initializing productivity chart:', e); }
+
+    // Initialize micro charts
+    try {
+        initializeMiniWeatherChart();
+        console.log('Mini weather micro chart initialized');
+    } catch (e) { console.error('Error initializing mini weather chart:', e); }
     
     // Initialize market-related charts
     try {
@@ -1947,6 +1953,38 @@ function initializeProfitAnalysisChart() {
 
 // Regional Analysis Chart
 function initializeRegionalAnalysisChart() {
+    // Micro Chart: Mini Weather Trend (Sparkline)
+    function initializeMiniWeatherChart() {
+        if (!window.sampleData || !window.sampleData.weather) return;
+        const ctx = document.getElementById('miniWeatherChart');
+        if (!ctx) return;
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: window.sampleData.weather.labels,
+                datasets: [{
+                    data: window.sampleData.weather.temperature,
+                    borderColor: '#fff',
+                    backgroundColor: 'rgba(255,255,255,0.15)',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    tension: 0.4,
+                    fill: true,
+                }]
+            },
+            options: {
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { display: false },
+                    y: { display: false }
+                },
+                elements: { line: { borderCapStyle: 'round' } },
+                responsive: false,
+                maintainAspectRatio: false,
+                animation: false,
+            }
+        });
+    }
     const regionalAnalysisCtx = document.getElementById('regionalAnalysisChart').getContext('2d');
     regionalAnalysisChart = new Chart(regionalAnalysisCtx, {
         type: 'radar',
