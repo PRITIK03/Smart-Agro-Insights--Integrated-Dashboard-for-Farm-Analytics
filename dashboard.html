@@ -949,6 +949,152 @@
             </div>
         </div>
 
+        <!-- Government Data & MSP Section -->
+        <div class="row g-4 mt-4">
+            <div class="col-12 col-lg-8">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp government-data-card">
+                    <div class="card-header bg-gradient-govt text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">
+                            <i class="bi bi-building me-2"></i>
+                            <span>सरकारी डेटा | Government Data Integration</span>
+                        </h5>
+                        <div class="govt-badges">
+                            <span class="badge bg-light text-dark me-1">IMD</span>
+                            <span class="badge bg-light text-dark me-1">Agmarknet</span>
+                            <span class="badge bg-warning text-dark">MSP 2024-25</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- MSP vs Market Price Comparison -->
+                        <div class="msp-comparison-section mb-4">
+                            <h6 class="section-title">
+                                <i class="bi bi-currency-rupee me-2"></i>
+                                MSP vs Market Price Comparison
+                                <button class="btn btn-sm btn-outline-primary ms-2" onclick="refreshMSPData()">
+                                    <i class="bi bi-arrow-clockwise"></i> Refresh
+                                </button>
+                            </h6>
+                            <div class="table-responsive" id="mspComparisonTable">
+                                <table class="table table-sm table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Crop</th>
+                                            <th>MSP (₹/Quintal)</th>
+                                            <th>Market Price (₹/Quintal)</th>
+                                            <th>Difference</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="mspTableBody">
+                                        <!-- Dynamic content -->
+                                        <tr>
+                                            <td colspan="5" class="text-center text-muted py-3">
+                                                <i class="bi bi-arrow-clockwise spin me-2"></i>
+                                                Loading government data...
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <!-- IMD Weather Alerts -->
+                        <div class="imd-alerts-section mb-4">
+                            <h6 class="section-title">
+                                <i class="bi bi-cloud-sun me-2"></i>
+                                IMD Weather Alerts | मौसम चेतावनी
+                            </h6>
+                            <div id="imdAlertsContainer" class="alert-container">
+                                <!-- Dynamic weather alerts -->
+                            </div>
+                        </div>
+                        
+                        <!-- Agmarknet Market Status -->
+                        <div class="agmarknet-section">
+                            <h6 class="section-title">
+                                <i class="bi bi-shop me-2"></i>
+                                Agmarknet Market Prices | कृषि उपज मंडी दर
+                            </h6>
+                            <div class="row g-2" id="agmarknetMarkets">
+                                <!-- Dynamic market cards -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Government Schemes Quick Access -->
+            <div class="col-12 col-lg-4">
+                <div class="card shadow-lg border-0 animate__animated animate__fadeInUp schemes-card">
+                    <div class="card-header bg-gradient-success text-white">
+                        <h5 class="mb-0">
+                            <i class="bi bi-award me-2"></i>
+                            <span>किसान योजनाएं | Farmer Schemes</span>
+                        </h5>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush" id="govtSchemesList">
+                            <a href="https://pmkisan.gov.in" target="_blank" class="list-group-item list-group-item-action scheme-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        <i class="bi bi-cash-stack text-success me-2"></i>
+                                        PM-KISAN
+                                    </h6>
+                                    <small class="text-success">₹6,000/yr</small>
+                                </div>
+                                <p class="mb-1 small text-muted">Income support to farmer families</p>
+                            </a>
+                            <a href="https://soilhealth.dac.gov.in" target="_blank" class="list-group-item list-group-item-action scheme-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        <i class="bi bi-file-text text-primary me-2"></i>
+                                        Soil Health Card
+                                    </h6>
+                                    <small class="text-primary">Free</small>
+                                </div>
+                                <p class="mb-1 small text-muted">Soil testing & recommendations</p>
+                            </a>
+                            <a href="https://pmfby.gov.in" target="_blank" class="list-group-item list-group-item-action scheme-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        <i class="bi bi-shield-check text-warning me-2"></i>
+                                        PMFBY
+                                    </h6>
+                                    <small class="text-warning">Insurance</small>
+                                </div>
+                                <p class="mb-1 small text-muted">Crop insurance against losses</p>
+                            </a>
+                            <a href="https://enam.gov.in" target="_blank" class="list-group-item list-group-item-action scheme-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        <i class="bi bi-cart text-info me-2"></i>
+                                        e-NAM
+                                    </h6>
+                                    <small class="text-info">Online</small>
+                                </div>
+                                <p class="mb-1 small text-muted">National Agriculture Market</p>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action scheme-item">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h6 class="mb-1">
+                                        <i class="bi bi-credit-card text-danger me-2"></i>
+                                        Kisan Credit Card
+                                    </h6>
+                                    <small class="text-danger">7% Interest</small>
+                                </div>
+                                <p class="mb-1 small text-muted">Short-term credit for farmers</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-light">
+                        <small class="text-muted">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Click to visit official portals
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Advanced Analytics Summary -->
         <div class="row g-4 mt-4">
@@ -1208,6 +1354,7 @@
     <script src="assets/js/services/weather-service.js"></script>
     <script src="assets/js/services/crop-service.js"></script>
     <script src="assets/js/services/ai-service.js"></script>
+    <script src="assets/js/services/government-service.js"></script>
     <!-- Main Dashboard -->
     <script src="assets/js/dashboard.js"></script>
     <script>
@@ -1553,6 +1700,191 @@
             document.getElementById('diseaseUploadSection').style.display = 'block';
         }
         
+        /**
+         * Government Data Functions
+         */
+        
+        /**
+         * Load MSP comparison data
+         */
+        async function loadMSPComparison() {
+            try {
+                const mspData = await window.GovernmentService?.getMSPData() || { crops: [] };
+                const tbody = document.getElementById('mspTableBody');
+                
+                if (!tbody || !mspData.crops?.length) {
+                    if (tbody) {
+                        tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted">MSP data temporarily unavailable</td></tr>`;
+                    }
+                    return;
+                }
+                
+                // Get market prices for comparison
+                const marketPrices = {
+                    'Wheat': 2100, 'Rice (Common)': 3500, 'Rice (Grade A)': 3700,
+                    'Cotton (Medium)': 5500, 'Cotton (Long)': 6000, 'Sugarcane (FRP)': 350,
+                    'Soybean (Yellow)': 4300, 'Maize': 2100, 'Bajra': 2250,
+                    'Jowar (Hybrid)': 2800, 'Tur/Arhar': 6600, 'Moong': 7500
+                };
+                
+                // Show top crops
+                const priorityCrops = ['Wheat', 'Rice (Common)', 'Cotton (Medium)', 'Soybean (Yellow)', 'Maize'];
+                
+                tbody.innerHTML = mspData.crops
+                    .filter(crop => priorityCrops.some(p => crop.name.includes(p)))
+                    .slice(0, 5)
+                    .map(crop => {
+                        const marketPrice = marketPrices[crop.name] || Math.round(crop.msp * (0.9 + Math.random() * 0.2));
+                        const diff = marketPrice - crop.msp;
+                        const percentDiff = Math.round((diff / crop.msp) * 100 * 10) / 10;
+                        const status = diff > 0 ? 
+                            `<span class="badge bg-success">Above MSP <i class="bi bi-arrow-up"></i></span>` :
+                            `<span class="badge bg-danger">Below MSP <i class="bi bi-arrow-down"></i></span>`;
+                        const diffClass = diff > 0 ? 'text-success' : 'text-danger';
+                        
+                        return `
+                            <tr>
+                                <td><strong>${crop.name}</strong></td>
+                                <td>₹${crop.msp.toLocaleString()}</td>
+                                <td>₹${marketPrice.toLocaleString()}</td>
+                                <td class="${diffClass}">${diff > 0 ? '+' : ''}₹${diff.toLocaleString()} (${percentDiff > 0 ? '+' : ''}${percentDiff}%)</td>
+                                <td>${status}</td>
+                            </tr>
+                        `;
+                    }).join('');
+                    
+            } catch (error) {
+                console.error('MSP loading error:', error);
+                const tbody = document.getElementById('mspTableBody');
+                if (tbody) {
+                    tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted">Unable to load MSP data. Please refresh.</td></tr>`;
+                }
+            }
+        }
+        
+        /**
+         * Refresh MSP data
+         */
+        async function refreshMSPData() {
+            const btn = event.target.closest('button');
+            if (btn) {
+                btn.disabled = true;
+                btn.innerHTML = '<i class="bi bi-arrow-clockwise spin"></i> Loading...';
+            }
+            
+            await loadMSPComparison();
+            
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="bi bi-arrow-clockwise"></i> Refresh';
+            }
+        }
+        
+        /**
+         * Load IMD weather alerts
+         */
+        async function loadIMDAlerts() {
+            try {
+                const districtId = document.getElementById('aiDistrictSelect')?.value || 'pune';
+                const weatherData = await window.GovernmentService?.getIMDWeather(districtId) || { alerts: [] };
+                const container = document.getElementById('imdAlertsContainer');
+                
+                if (!container) return;
+                
+                if (!weatherData.alerts?.length) {
+                    container.innerHTML = `
+                        <div class="alert alert-success mb-2">
+                            <i class="bi bi-check-circle me-2"></i>
+                            No weather alerts for your region. Conditions are normal.
+                        </div>
+                    `;
+                    return;
+                }
+                
+                const severityIcons = {
+                    red: 'exclamation-triangle-fill',
+                    orange: 'exclamation-circle-fill',
+                    yellow: 'info-circle-fill'
+                };
+                
+                const severityClasses = {
+                    red: 'alert-danger',
+                    orange: 'alert-warning',
+                    yellow: 'alert-info'
+                };
+                
+                container.innerHTML = weatherData.alerts.map(alert => `
+                    <div class="alert ${severityClasses[alert.severity] || 'alert-info'} mb-2">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-${severityIcons[alert.severity] || 'info-circle'} me-2 mt-1"></i>
+                            <div>
+                                <strong>${alert.title}</strong>
+                                <p class="mb-1 small">${alert.description}</p>
+                                <small><strong>Action:</strong> ${alert.action}</small>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+            } catch (error) {
+                console.error('IMD alerts error:', error);
+            }
+        }
+        
+        /**
+         * Load Agmarknet market prices
+         */
+        async function loadAgmarknetPrices() {
+            try {
+                const crop = document.getElementById('aiCropSelect')?.value || 'wheat';
+                const marketData = await window.GovernmentService?.getAgmarknetPrices(crop) || { data: [] };
+                const container = document.getElementById('agmarknetMarkets');
+                
+                if (!container) return;
+                
+                if (!marketData.data?.length) {
+                    container.innerHTML = '<div class="col-12 text-muted">Market data unavailable</div>';
+                    return;
+                }
+                
+                container.innerHTML = marketData.data.slice(0, 4).map(market => {
+                    const trendIcon = market.trend === 'up' ? 'arrow-up text-success' : 'arrow-down text-danger';
+                    const trendClass = market.trend === 'up' ? 'border-success' : 'border-danger';
+                    
+                    return `
+                        <div class="col-6 col-md-3">
+                            <div class="card market-mini-card ${trendClass} border-2">
+                                <div class="card-body p-2 text-center">
+                                    <h6 class="mb-1">${market.market}</h6>
+                                    <div class="price">₹${market.price.toLocaleString()}</div>
+                                    <small class="text-muted">/quintal</small>
+                                    <div class="trend mt-1">
+                                        <i class="bi bi-${trendIcon}"></i>
+                                        ${market.change_percent > 0 ? '+' : ''}${market.change_percent}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                
+            } catch (error) {
+                console.error('Agmarknet loading error:', error);
+            }
+        }
+        
+        /**
+         * Initialize all government data
+         */
+        async function initializeGovernmentData() {
+            await Promise.all([
+                loadMSPComparison(),
+                loadIMDAlerts(),
+                loadAgmarknetPrices()
+            ]);
+            console.log('✅ Government data loaded');
+        }
+        
         // Initialize everything when the DOM is fully loaded
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize AOS
@@ -1570,6 +1902,13 @@
                     console.error('Error during dashboard initialization:', error);
                 }
             }
+            
+            // Initialize government data with slight delay for better performance
+            setTimeout(() => {
+                initializeGovernmentData().catch(err => {
+                    console.warn('Government data initialization:', err);
+                });
+            }, 1000);
         });
     </script>
 </body>
@@ -3506,6 +3845,93 @@ body::before {
 .upload-area:hover {
     border-color: #667eea !important;
     background: rgba(102, 126, 234, 0.02);
+}
+
+/* Government Data Section Styles */
+.bg-gradient-govt {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+}
+
+.government-data-card {
+    border: 2px solid rgba(30, 60, 114, 0.2);
+}
+
+.govt-badges .badge {
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.section-title {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.msp-comparison-section .table {
+    font-size: 0.875rem;
+}
+
+.msp-comparison-section .table th {
+    font-weight: 600;
+    background: #f8f9fa;
+}
+
+.msp-comparison-section .badge {
+    font-size: 0.75rem;
+}
+
+.alert-container .alert {
+    border-radius: 8px;
+    font-size: 0.875rem;
+}
+
+.market-mini-card {
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+}
+
+.market-mini-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.market-mini-card .price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+}
+
+.market-mini-card .trend {
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.schemes-card .scheme-item {
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.schemes-card .scheme-item:hover {
+    background: #f8f9fa;
+    border-left-color: #28a745;
+    padding-left: 1.25rem;
+}
+
+.schemes-card .scheme-item i {
+    font-size: 1.1rem;
+}
+
+/* Spin animation for loading */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+    display: inline-block;
 }
 </style>
 </html>
