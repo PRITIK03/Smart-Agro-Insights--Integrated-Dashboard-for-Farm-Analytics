@@ -1,17 +1,22 @@
 // Service Worker for PWA functionality
-const CACHE_NAME = 'agri-risk-v1.0.0';
+const CACHE_NAME = 'agri-risk-v1.1.0';
 const urlsToCache = [
   '/',
   '/index.html',
   '/dashboard.html',
   '/about.html',
   '/help.html',
+  '/analytics.html',
   '/manifest.json',
   '/assets/css/styles.css',
   '/assets/js/i18n.js',
   '/assets/js/data.js',
   '/assets/js/app.js',
   '/assets/js/dashboard.js',
+  '/assets/js/features.js',
+  '/assets/js/analytics.js',
+  '/assets/icons/icon-192x192.png',
+  '/assets/icons/icon-512x512.png',
   'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
   'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css',
   'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css',
@@ -33,18 +38,31 @@ self.addEventListener('install', event => {
   );
 });
 
-// Fetch event - serve from cache when offline
+// Fetch event - stale-while-revalidate pattern
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
-      .then(response => {
-        // Return cached version or fetch from network
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      }
-    )
+      .then(cachedResponse => {
+        // Fetch fresh data from network
+        const fetchPromise = fetch(event.request)
+          .then(networkResponse => {
+            // Update cache with fresh response
+            if (networkResponse && networkResponse.status === 200) {
+              const cacheCopy = networkResponse.clone();
+              caches.open(CACHE_NAME).then(cache => {
+                cache.put(event.request, cacheCopy);
+              });
+            }
+            return networkResponse;
+          })
+          .catch(error => {
+            console.log('Fetch failed, using cache:', error);
+            return cachedResponse;
+          });
+        
+        // Return cached version immediately if available, otherwise wait for network
+        return cachedResponse || fetchPromise;
+      })
   );
 });
 
@@ -88,7 +106,7 @@ self.addEventListener('push', event => {
   const options = {
     body: event.data ? event.data.text() : 'New agricultural alert!',
     icon: '/assets/icons/icon-192x192.png',
-    badge: '/assets/icons/badge-72x72.png',
+    badge: '/assets/icons/icon-192x192.png',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
@@ -97,13 +115,11 @@ self.addEventListener('push', event => {
     actions: [
       {
         action: 'explore',
-        title: 'View Details',
-        icon: '/assets/icons/checkmark.png'
+        title: 'View Details'
       },
       {
         action: 'close',
-        title: 'Close',
-        icon: '/assets/icons/xmark.png'
+        title: 'Close'
       }
     ]
   };

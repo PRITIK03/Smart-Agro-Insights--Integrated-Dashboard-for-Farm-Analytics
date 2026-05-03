@@ -1,5 +1,17 @@
 // Enhanced Dashboard functionality with advanced analytics
-let weatherChart, priceChart, yieldChart, productivityChart, soilHealthChart, financialChart, profitChart, riskAnalysisChart, weatherPatternChart, priceTrendChart, marketShareChart, cropProductionChart, weatherAnalysisChart, profitAnalysisChart, regionalAnalysisChart, riskAssessmentChart;
+// Chart instances - grouped by category
+const charts = {
+  weather: { main: null, mini: null, analysis: null, pattern: null },
+  market: { price: null, trend: null, share: null },
+  crop: { yield: null, production: null },
+  analysis: { productivity: null, soil: null, financial: null, profit: null, regional: null, risk: null }
+};
+
+// Legacy references for backward compatibility (deprecated)
+let weatherChart, priceChart, yieldChart, productivityChart, soilHealthChart, 
+    financialChart, profitChart, riskAnalysisChart, weatherPatternChart, 
+    priceTrendChart, marketShareChart, cropProductionChart, weatherAnalysisChart, 
+    profitAnalysisChart, regionalAnalysisChart, riskAssessmentChart;
 let realTimeData = {};
 
 // Sample data is now loaded from data.js
@@ -140,11 +152,11 @@ function initializeWeatherChart() {
     const weatherCtx = document.getElementById('weatherChart').getContext('2d');
     
     // Generate weather icons based on conditions
-    const weatherIcons = window.window.sampleData.weather.rainfall.map(rain => {
+    const weatherIcons = window.sampleData?.weather?.rainfall?.map(rain => {
         if (rain > 4) return '🌧️';
         if (rain > 0) return '🌦️';
         return '☀️';
-    });
+    }) || ['☀️', '☀️', '☀️', '☀️', '☀️', '☀️', '☀️'];
     
     weatherChart = new Chart(weatherCtx, {
         type: 'line',
