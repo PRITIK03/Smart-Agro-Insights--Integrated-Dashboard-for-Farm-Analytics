@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Agro Insights - Test Suite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .test-container {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            padding: 2rem;
+        }
+        .test-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .test-header h1 {
+            color: #667eea;
+            font-weight: 700;
+        }
+        .test-suite {
+            border: 1px solid #e9ecef;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .test-suite-header {
+            background: #f8f9fa;
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .test-suite-header:hover {
+            background: #e9ecef;
+        }
+        .test-result {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .test-result:last-child {
+            border-bottom: none;
+        }
+        .test-pass {
+            color: #28a745;
+        }
+        .test-fail {
+            color: #dc3545;
+        }
+        .status-badge {
+            font-size: 0.875rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+        }
+        .status-pass {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status-fail {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .run-all-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .run-all-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+        .run-all-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .summary-card {
+            background: #f8f9fa;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        .summary-stat {
+            text-align: center;
+            padding: 1rem;
+        }
+        .summary-stat .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        .summary-stat .label {
+            color: #6c757d;
+            font-size: 0.875rem;
+        }
+        .console-output {
+            background: #212529;
+            color: #fff;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+        .console-output .log-info { color: #0dcaf0; }
+        .console-output .log-success { color: #20c997; }
+        .console-output .log-error { color: #dc3545; }
+        .console-output .log-warn { color: #ffc107; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="test-container">
+            <div class="test-header">
+                <h1><i class="bi bi-bug-fill me-2"></i>Smart Agro Insights - Test Suite</h1>
+                <p class="text-muted">Comprehensive unit tests for all services and utilities</p>
+            </div>
+
+            <div class="d-flex justify-content-center mb-4">
+                <button class="run-all-btn" id="runAllBtn" onclick="runAllTests()">
+                    <i class="bi bi-play-fill me-2"></i>Run All Tests
+                </button>
+            </div>
+
+            <div class="row g-3">
+                <!-- API Client Tests -->
+                <div class="col-md-6">
+                    <div class="test-suite">
+                        <div class="test-suite-header" onclick="toggleSuite('apiClient')">
+                            <div>
+                                <i class="bi bi-cloud-arrow-up me-2"></i>
+                                <strong>API Client Tests</strong>
+                            </div>
+                            <span class="status-badge" id="apiClientBadge">Pending</span>
+                        </div>
+                        <div class="test-suite-body" id="apiClientBody" style="display: none;">
+                            <div id="apiClientResults"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Service Tests -->
+                <div class="col-md-6">
+                    <div class="test-suite">
+                        <div class="test-suite-header" onclick="toggleSuite('aiService')">
+                            <div>
+                                <i class="bi bi-cpu me-2"></i>
+                                <strong>AI Service Tests</strong>
+                            </div>
+                            <span class="status-badge" id="aiServiceBadge">Pending</span>
+                        </div>
+                        <div class="test-suite-body" id="aiServiceBody" style="display: none;">
+                            <div id="aiServiceResults"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Weather Service Tests -->
+                <div class="col-md-6">
+                    <div class="test-suite">
+                        <div class="test-suite-header" onclick="toggleSuite('weatherService')">
+                            <div>
+                                <i class="bi bi-cloud-sun me-2"></i>
+                                <strong>Weather Service Tests</strong>
+                            </div>
+                            <span class="status-badge" id="weatherServiceBadge">Pending</span>
+                        </div>
+                        <div class="test-suite-body" id="weatherServiceBody" style="display: none;">
+                            <div id="weatherServiceResults"></div>
+                            <div class="text-muted text-center py-3">Tests loaded from service file</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Government Service Tests -->
+                <div class="col-md-6">
+                    <div class="test-suite">
+                        <div class="test-suite-header" onclick="toggleSuite('govtService')">
+                            <div>
+                                <i class="bi bi-building me-2"></i>
+                                <strong>Government Service Tests</strong>
+                            </div>
+                            <span class="status-badge" id="govtServiceBadge">Pending</span>
+                        </div>
+                        <div class="test-suite-body" id="govtServiceBody" style="display: none;">
+                            <div id="govtServiceResults"></div>
+                            <div class="text-muted text-center py-3">Tests loaded from service file</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="summary-card" id="summaryCard" style="display: none;">
+                <h5 class="mb-3"><i class="bi bi-clipboard-data me-2"></i>Test Summary</h5>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="summary-stat">
+                            <div class="number text-primary" id="totalTests">0</div>
+                            <div class="label">Total Tests</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="summary-stat">
+                            <div class="number text-success" id="passedTests">0</div>
+                            <div class="label">Passed</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="summary-stat">
+                            <div class="number text-danger" id="failedTests">0</div>
+                            <div class="label">Failed</div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="summary-stat">
+                            <div class="number" id="passRate">0%</div>
+                            <div class="label">Pass Rate</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Console Output -->
+            <div class="console-output" id="consoleOutput" style="display: none;">
+                <div class="text-muted">Test execution log...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load dependencies -->
+    <script src="../assets/js/utils/error-handler.js"></script>
+    <script src="../assets/js/utils/api-client.js"></script>
+    <script src="../assets/js/services/weather-service.js"></script>
+    <script src="../assets/js/services/crop-service.js"></script>
+    <script src="../assets/js/services/ai-service.js"></script>
+    <script src="../assets/js/services/government-service.js"></script>
+    
+    <!-- Load test files -->
+    <script src="utils/api-client.test.js"></script>
+    <script src="services/ai-service.test.js"></script>
+
+    <script>
+        // Capture console output
+        const originalLog = console.log;
+        const originalError = console.error;
+        const consoleOutput = document.getElementById('consoleOutput');
+
+        function logToOutput(message, type = 'info') {
+            if (consoleOutput) {
+                consoleOutput.style.display = 'block';
+                const line = document.createElement('div');
+                line.className = `log-${type}`;
+                line.textContent = message;
+                consoleOutput.appendChild(line);
+                consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            }
+        }
+
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            logToOutput(args.join(' '), 'info');
+        };
+
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            logToOutput(args.join(' '), 'error');
+        };
+
+        // Toggle test suite visibility
+        function toggleSuite(suite) {
+            const body = document.getElementById(suite + 'Body');
+            if (body) {
+                body.style.display = body.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        // Update badge
+        function updateBadge(suite, status, passed = 0, failed = 0) {
+            const badge = document.getElementById(suite + 'Badge');
+            if (!badge) return;
+
+            if (status === 'running') {
+                badge.textContent = 'Running...';
+                badge.className = 'status-badge';
+            } else if (status === 'passed') {
+                badge.textContent = `${passed}/${passed + failed} Passed`;
+                badge.className = 'status-badge status-pass';
+            } else if (status === 'failed') {
+                badge.textContent = `${passed}/${passed + failed} Failed`;
+                badge.className = 'status-badge status-fail';
+            }
+        }
+
+        // Display results
+        function displayResults(suite, results) {
+            const container = document.getElementById(suite + 'Results');
+            if (!container) return;
+
+            container.innerHTML = results.tests.map(test => {
+                const isPass = results.errors.every(e => e.test !== test.name);
+                const icon = isPass ? 'check-circle-fill test-pass' : 'x-circle-fill test-fail';
+                return `
+                    <div class="test-result">
+                        <i class="bi bi-${icon}"></i>
+                        <span>${test.name}</span>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Run all tests
+        async function runAllTests() {
+            const btn = document.getElementById('runAllBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Running Tests...';
+
+            let total = { passed: 0, failed: 0 };
+
+            // Run API Client Tests
+            if (window.ApiClientTests) {
+                updateBadge('apiClient', 'running');
+                const results = await window.ApiClientTests.runAll();
+                updateBadge('apiClient', results.failed > 0 ? 'failed' : 'passed', results.passed, results.failed);
+                displayResults('apiClient', { tests: window.ApiClientTests.tests, errors: results.errors });
+                total.passed += results.passed;
+                total.failed += results.failed;
+            }
+
+            // Run AI Service Tests
+            if (window.AIServiceTests) {
+                updateBadge('aiService', 'running');
+                const results = await window.AIServiceTests.runAll();
+                updateBadge('aiService', results.failed > 0 ? 'failed' : 'passed', results.passed, results.failed);
+                displayResults('aiService', { tests: window.AIServiceTests.tests, errors: results.errors });
+                total.passed += results.passed;
+                total.failed += results.failed;
+            }
+
+            // Update summary
+            document.getElementById('summaryCard').style.display = 'block';
+            document.getElementById('totalTests').textContent = total.passed + total.failed;
+            document.getElementById('passedTests').textContent = total.passed;
+            document.getElementById('failedTests').textContent = total.failed;
+            document.getElementById('passRate').textContent = 
+                Math.round((total.passed / (total.passed + total.failed)) * 100) + '%';
+
+            // Re-enable button
+            btn.disabled = false;
+            btn.innerHTML = '<i class="bi bi-arrow-clockwise me-2"></i>Run Again';
+
+            console.log('\n🏁 All tests completed!');
+            console.log(`   Total: ${total.passed + total.failed}`);
+            console.log(`   Passed: ${total.passed}`);
+            console.log(`   Failed: ${total.failed}`);
+        }
+
+        // Auto-run if requested
+        if (window.location.search.includes('autorun=true')) {
+            window.addEventListener('load', () => {
+                setTimeout(runAllTests, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
